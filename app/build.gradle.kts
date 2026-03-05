@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -55,4 +57,38 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // collect as state with lifecycle
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
+    // datastore proto
+    implementation(libs.androidx.datastore)
+
+    // room database
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+    // compose nav host & type safe navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Kotlin json
+    implementation(libs.kotlinx.serialization.json)
+
+    // splash screen
+    implementation(libs.androidx.core.splashscreen)
+
+    // material3 expressive
+    implementation(libs.androidx.material3.android)
+
+    // coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.ktor3)
+
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.kotlinx.serialization)
+
+    //work manager
+    implementation(libs.androidx.work.runtime.ktx)
 }
