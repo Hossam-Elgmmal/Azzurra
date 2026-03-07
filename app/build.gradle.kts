@@ -91,4 +91,7 @@ dependencies {
 
     //work manager
     implementation(libs.androidx.work.runtime.ktx)
+
+    //cloudy
+    implementation(libs.cloudy)
 }

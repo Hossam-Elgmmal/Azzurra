@@ -27,6 +27,10 @@ private val fontFamily = FontFamily(
         resId = R.font.manrope_bold,
         weight = FontWeight.Bold,
     ),
+    Font(
+        resId = R.font.manrope_extrabold,
+        weight = FontWeight.ExtraBold,
+    ),
 )
 
 private val baseline = Typography()
