@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
@@ -38,6 +39,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -94,4 +96,12 @@ dependencies {
 
     //cloudy
     implementation(libs.cloudy)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    // hilt view model
+    implementation(libs.androidx.hilt.navigation.compose)
+    //hilt work
+    implementation(libs.androidx.hilt.work)
 }

@@ -2,12 +2,15 @@ package com.iti.azzurra.features.alerts
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
-class AlertsViewModel : ViewModel() {
+@HiltViewModel
+class AlertsViewModel @Inject constructor() : ViewModel() {
 
     private var hasLoadedInitialData = false
 
