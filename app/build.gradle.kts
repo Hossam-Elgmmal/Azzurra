@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -22,6 +24,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val myProperties = Properties()
+        myProperties.load(rootProject.file("local.properties").inputStream())
+        buildConfigField("String", "BASE_URL", "\"${myProperties.getProperty("BASE_URL")}\"")
+        buildConfigField("String", "WEATHER_API_KEY", "\"${myProperties.getProperty("WEATHER_API_KEY")}\"")
     }
 
     buildTypes {
@@ -90,6 +97,8 @@ dependencies {
     //retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.kotlinx.serialization)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
 
     //work manager
     implementation(libs.androidx.work.runtime.ktx)
