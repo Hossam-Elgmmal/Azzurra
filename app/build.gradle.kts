@@ -16,6 +16,16 @@ android {
         }
     }
 
+    val myProperties = Properties()
+    myProperties.load(rootProject.file("local.properties").inputStream())
+
+    val signing = signingConfigs.create("debug_and_release") {
+        storeFile = rootProject.file("secret/key.jks")
+        storePassword = myProperties.getProperty("KEYSTORE_PASSWORD")
+        keyAlias = myProperties.getProperty("KEY_ALIAS")
+        keyPassword = myProperties.getProperty("KEY_PASSWORD")
+    }
+
     defaultConfig {
         applicationId = "com.iti.azzurra"
         minSdk = 26
@@ -25,10 +35,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val myProperties = Properties()
-        myProperties.load(rootProject.file("local.properties").inputStream())
         buildConfigField("String", "BASE_URL", "\"${myProperties.getProperty("BASE_URL")}\"")
-        buildConfigField("String", "WEATHER_API_KEY", "\"${myProperties.getProperty("WEATHER_API_KEY")}\"")
+        buildConfigField(
+            "String",
+            "WEATHER_API_KEY",
+            "\"${myProperties.getProperty("WEATHER_API_KEY")}\""
+        )
     }
 
     buildTypes {
@@ -38,6 +50,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signing
+        }
+        debug {
+            signingConfig = signing
         }
     }
     compileOptions {
