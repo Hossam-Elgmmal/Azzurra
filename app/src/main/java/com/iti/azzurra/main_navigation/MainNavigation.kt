@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -30,7 +32,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -38,6 +42,8 @@ import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import coil3.compose.AsyncImage
+import com.iti.azzurra.MainUiState
 import com.iti.azzurra.R
 import com.iti.azzurra.common.AzzurraSnackbarHost
 import com.iti.azzurra.common.ObserveEvent
@@ -56,7 +62,9 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun MainNavigation(
-    startDestination: Route
+    startDestination: Route,
+    mainUiState: MainUiState,
+    isDarkTheme: Boolean
 ) {
 
     val snackbarHostState = remember { SnackbarHostState() }
@@ -66,6 +74,13 @@ fun MainNavigation(
     val canOpenMapDialog = currentRoute?.destination?.hasRoute(SettingsRoute::class)?.not() ?: true
     var shouldShowMapDialog by remember { mutableStateOf(false) }
     val sky = rememberSky()
+    val imageId = remember(mainUiState) {
+        when (mainUiState) {
+            MainUiState.Loading -> R.drawable.img_clear
+            is MainUiState.Ready ->
+                mainUiState.userSettings.weatherCondition.getImageId()
+        }
+    }
 
     ObserveEvent(SnackbarController.events) { snackbarEvent ->
         scope.launch {
@@ -110,6 +125,7 @@ fun MainNavigation(
                         .border(1.dp, MaterialTheme.colorScheme.surfaceContainerHigh, CircleShape)
                         .background(MaterialTheme.colorScheme.surfaceContainer, CircleShape)
                         .cloudy(sky, radius = 32, cpuBlurEnabled = false)
+                        .background(MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.4f), CircleShape)
                         .padding(6.dp)
                 ) {
                     BottomNavRoute.entries.forEach { route ->
@@ -142,6 +158,20 @@ fun MainNavigation(
                    .fillMaxSize()
                    .sky(sky)
             ) {
+                val color = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.4f)
+                AsyncImage(
+                    model = imageId,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .drawWithContent{
+                            drawContent()
+                            if (isDarkTheme) {
+                                drawRect(color = color)
+                            }
+                        },
+                    contentScale = ContentScale.Crop
+                )
                 NavHost(
                     navController = navController,
                     startDestination = startDestination,
@@ -158,6 +188,13 @@ fun MainNavigation(
                     alertsNavigation()
                     settingsNavigation()
                 }
+                Box(
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.4f))
+                        .fillMaxWidth()
+                        .windowInsetsTopHeight(WindowInsets.statusBars)
+                        .align(Alignment.TopCenter)
+                )
             }
         }
     }

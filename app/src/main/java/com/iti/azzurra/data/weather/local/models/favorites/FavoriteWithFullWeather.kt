@@ -5,20 +5,20 @@ import androidx.room.Relation
 
 data class FavoriteWithFullWeather(
     @Embedded
-    val location: com.iti.azzurra.data.weather.local.models.favorites.FavoriteLocationEntity,
+    val location: FavoriteLocationEntity,
     @Relation(
         parentColumn = "locationId",
         entityColumn = "locationId"
     )
-    val hourlyForecast: List<com.iti.azzurra.data.weather.local.models.favorites.FavoriteHourlyForecastEntity>,
+    val hourlyForecast: List<FavoriteHourlyForecastEntity>,
     @Relation(
         parentColumn = "locationId",
         entityColumn = "locationId"
     )
-    val dailyForecast: List<com.iti.azzurra.data.weather.local.models.favorites.FavoriteDailyForecastEntity>,
+    val dailyForecast: List<FavoriteDailyForecastEntity>,
     @Relation(
         parentColumn = "locationId",
         entityColumn = "locationId"
     )
-    val airPollution: List<com.iti.azzurra.data.weather.local.models.favorites.FavoriteAirPollutionEntity>
+    val airPollution: List<FavoriteAirPollutionEntity>
 )
