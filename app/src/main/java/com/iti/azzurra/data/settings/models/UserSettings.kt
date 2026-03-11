@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class UserSettings(
     val language: LanguageSetting = LanguageSetting.ENGLISH,
     val theme: ThemeSetting = ThemeSetting.FOLLOW_SYSTEM,
-    val locationSource: LocationSource = LocationSource.GPS,
+    val locationSource: LocationSource = LocationSource.MAP,
     val temperatureUnit: TemperatureUnit = TemperatureUnit.CELSIUS,
     val windSpeedUnit: WindSpeedUnit = WindSpeedUnit.METER_PER_SEC,
     val savedLatitude: Double = 0.0,

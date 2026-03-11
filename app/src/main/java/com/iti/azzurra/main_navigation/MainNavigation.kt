@@ -59,6 +59,8 @@ import com.skydoves.cloudy.cloudy
 import com.skydoves.cloudy.rememberSky
 import com.skydoves.cloudy.sky
 import kotlinx.coroutines.launch
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.rememberHazeState
 
 @Composable
 fun MainNavigation(
@@ -74,6 +76,7 @@ fun MainNavigation(
     val canOpenMapDialog = currentRoute?.destination?.hasRoute(SettingsRoute::class)?.not() ?: true
     var shouldShowMapDialog by remember { mutableStateOf(false) }
     val sky = rememberSky()
+    val hazeStateForApp = rememberHazeState()
     val imageId = remember(mainUiState) {
         when (mainUiState) {
             MainUiState.Loading -> R.drawable.img_clear
@@ -151,7 +154,7 @@ fun MainNavigation(
     ) { innerPadding ->
         CompositionLocalProvider(
             LocalBottomBarHeight provides innerPadding.calculateBottomPadding(),
-            LocalSky provides sky
+            LocalHazeState provides hazeStateForApp
         ) {
             Box(
                modifier = Modifier
@@ -169,15 +172,15 @@ fun MainNavigation(
                             if (isDarkTheme) {
                                 drawRect(color = color)
                             }
-                        },
+                        }
+                        .hazeSource(state = hazeStateForApp),
                     contentScale = ContentScale.Crop
                 )
                 NavHost(
                     navController = navController,
                     startDestination = startDestination,
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(top = innerPadding.calculateTopPadding()),
+                        .fillMaxSize(),
                     enterTransition = { fadeIn(animationSpec = tween(350)) },
                     exitTransition = { fadeOut(animationSpec = tween(350)) },
                     popEnterTransition = { fadeIn(animationSpec = tween(350)) },
@@ -188,13 +191,6 @@ fun MainNavigation(
                     alertsNavigation()
                     settingsNavigation()
                 }
-                Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.4f))
-                        .fillMaxWidth()
-                        .windowInsetsTopHeight(WindowInsets.statusBars)
-                        .align(Alignment.TopCenter)
-                )
             }
         }
     }

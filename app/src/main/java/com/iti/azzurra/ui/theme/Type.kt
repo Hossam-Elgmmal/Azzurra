@@ -54,6 +54,28 @@ private val AmiriFontFamily = FontFamily(
         weight = FontWeight.ExtraBold,
     ),
 )
+private val AlmaraiFontFamily = FontFamily(
+    Font(
+        resId = R.font.almarai,
+        weight = FontWeight.Normal,
+    ),
+    Font(
+        resId = R.font.almarai,
+        weight = FontWeight.Medium,
+    ),
+    Font(
+        resId = R.font.almarai_bold,
+        weight = FontWeight.SemiBold,
+    ),
+    Font(
+        resId = R.font.almarai_bold,
+        weight = FontWeight.Bold,
+    ),
+    Font(
+        resId = R.font.almarai_bold,
+        weight = FontWeight.ExtraBold,
+    ),
+)
 
 private val baseline = Typography()
 
@@ -82,13 +104,13 @@ val ArabicTypography = Typography(
     headlineLarge = baseline.headlineLarge.copy(fontFamily = AmiriFontFamily),
     headlineMedium = baseline.headlineMedium.copy(fontFamily = AmiriFontFamily),
     headlineSmall = baseline.headlineSmall.copy(fontFamily = AmiriFontFamily),
-    titleLarge = baseline.titleLarge.copy(fontFamily = AmiriFontFamily),
-    titleMedium = baseline.titleMedium.copy(fontFamily = AmiriFontFamily),
-    titleSmall = baseline.titleSmall.copy(fontFamily = AmiriFontFamily),
-    bodyLarge = baseline.bodyLarge.copy(fontFamily = AmiriFontFamily),
-    bodyMedium = baseline.bodyMedium.copy(fontFamily = AmiriFontFamily),
-    bodySmall = baseline.bodySmall.copy(fontFamily = AmiriFontFamily),
-    labelLarge = baseline.labelLarge.copy(fontFamily = AmiriFontFamily),
-    labelMedium = baseline.labelMedium.copy(fontFamily = AmiriFontFamily),
-    labelSmall = baseline.labelSmall.copy(fontFamily = AmiriFontFamily),
+    titleLarge = baseline.titleLarge.copy(fontFamily = AlmaraiFontFamily),
+    titleMedium = baseline.titleMedium.copy(fontFamily = AlmaraiFontFamily),
+    titleSmall = baseline.titleSmall.copy(fontFamily = AlmaraiFontFamily),
+    bodyLarge = baseline.bodyLarge.copy(fontFamily = AlmaraiFontFamily),
+    bodyMedium = baseline.bodyMedium.copy(fontFamily = AlmaraiFontFamily),
+    bodySmall = baseline.bodySmall.copy(fontFamily = AlmaraiFontFamily),
+    labelLarge = baseline.labelLarge.copy(fontFamily = AlmaraiFontFamily),
+    labelMedium = baseline.labelMedium.copy(fontFamily = AlmaraiFontFamily),
+    labelSmall = baseline.labelSmall.copy(fontFamily = AlmaraiFontFamily),
 )

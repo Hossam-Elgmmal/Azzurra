@@ -16,4 +16,10 @@
     <string name="location_not_found_try_searching_for_a_different_city">Location not found. Try searching for a different city.</string>
     <string name="api_limit_reached_please_try_again_in_a_few_minutes">API limit reached. Please try again in a few minutes.</string>
     <string name="invalid_api_key_please_contact_support">Invalid API key. Please contact support.</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="select_language">Select Language</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>

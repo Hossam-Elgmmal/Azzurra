@@ -1,6 +1,9 @@
 package com.iti.azzurra.features.settings
 
+import com.iti.azzurra.data.settings.models.UserSettings
+
 data class SettingsState(
-    val paramOne: String = "default",
-    val paramTwo: List<String> = emptyList(),
+    val settings: UserSettings = UserSettings(),
+    val showLanguageDialog: Boolean = false,
+    val showThemeDialog: Boolean = false,
 )

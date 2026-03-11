@@ -41,6 +41,9 @@ android {
             "WEATHER_API_KEY",
             "\"${myProperties.getProperty("WEATHER_API_KEY")}\""
         )
+        androidResources {
+            localeFilters.addAll(setOf("en", "ar"))
+        }
     }
 
     buildTypes {
@@ -121,6 +124,9 @@ dependencies {
 
     //cloudy
     implementation(libs.cloudy)
+    //haze
+    implementation(libs.haze)
+    implementation(libs.haze.materials)
 
     // Hilt
     implementation(libs.hilt.android)
@@ -129,4 +135,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     //hilt work
     implementation(libs.androidx.hilt.work)
+
+    // appcompat
+    implementation(libs.androidx.appcompat)
 }

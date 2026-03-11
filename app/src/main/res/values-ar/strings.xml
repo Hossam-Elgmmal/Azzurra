@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">أزورّا</string>
+    <string name="home">الرئيسية</string>
+    <string name="favorites">المفضلة</string>
+    <string name="alerts">التنبيهات</string>
+    <string name="settings">الإعدادات</string>
+    <string name="open_map_dialog">فتح خريطة</string>
+
+    <string name="request_timed_out">انتهت مهلة الطلب</string>
+    <string name="too_many_requests">عدد كبير جداً من الطلبات</string>
+    <string name="no_internet_connection">لا يوجد اتصال بالإنترنت</string>
+    <string name="server_error">خطأ في الخادم. يرجى المحاولة لاحقاً.</string>
+    <string name="failed_to_process_response">فشل في معالجة الاستجابة</string>
+    <string name="something_went_wrong">حدث خطأ ما. يرجى المحاولة لاحقاً.</string>
+    <string name="no_weather_data_received_please_try_again">لم يتم استلام بيانات الطقس. يرجى المحاولة مرة أخرى.</string>
+    <string name="location_not_found_try_searching_for_a_different_city">لم يتم العثور على الموقع. حاول البحث عن مدينة أخرى.</string>
+    <string name="api_limit_reached_please_try_again_in_a_few_minutes">تم الوصول إلى حد واجهة البرمجة. يرجى المحاولة بعد بضع دقائق.</string>
+    <string name="invalid_api_key_please_contact_support">مفتاح واجهة البرمجة غير صالح. يرجى التواصل مع الدعم.</string>
+    <string name="language">اللغة</string>
+    <string name="english">الإنجليزية</string>
+    <string name="arabic">العربية</string>
+    <string name="select_language">اختر اللغة</string>
+    <string name="confirm">تأكيد</string>
+    <string name="cancel">إلغاء</string>
+</resources>

@@ -1,10 +1,11 @@
 package com.iti.azzurra
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,6 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.iti.azzurra.data.settings.models.LanguageSetting
 import com.iti.azzurra.features.home.HomeRoute
 import com.iti.azzurra.main_navigation.MainNavigation
 import com.iti.azzurra.ui.theme.AzzurraTheme
@@ -21,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
     private var mainUiState: MainUiState by mutableStateOf(MainUiState.Loading)
@@ -39,6 +41,16 @@ class MainActivity : ComponentActivity() {
                     mainUiState = it
                 }
             }
+        }
+
+        lifecycleScope.launch {
+            val locales = AppCompatDelegate.getApplicationLocales()
+            val langTag = locales.toLanguageTags()
+            val languageSetting = when (langTag) {
+                "ar" -> LanguageSetting.ARABIC
+                else -> LanguageSetting.ENGLISH
+            }
+            viewModel.saveLanguageSettings(languageSetting)
         }
 
         enableEdgeToEdge()
