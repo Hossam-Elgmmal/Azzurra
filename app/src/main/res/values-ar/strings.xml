@@ -23,4 +23,21 @@
     <string name="select_language">اختر اللغة</string>
     <string name="confirm">تأكيد</string>
     <string name="cancel">إلغاء</string>
+    <string name="light">فاتح</string>
+    <string name="dark">داكن</string>
+    <string name="follow_system">اتباع إعدادات النظام</string>
+    <string name="theme">المظهر</string>
+    <string name="select_theme">اختر المظهر</string>
+    <string name="done">تم</string>
+    <string name="use_gps">استخدام GPS</string>
+    <string name="set_current_location">تحديد الموقع الحالي:</string>
+    <string name="map">الخريطة</string>
+    <string name="gps">GPS</string>
+    <string name="celsius">°م</string>
+    <string name="fahrenheit">°ف</string>
+    <string name="kelvin">ك</string>
+    <string name="set_temperature_unit">تحديد وحدة درجة الحرارة:</string>
+    <string name="mph">ميل/س</string>
+    <string name="m_s">م/ث</string>
+    <string name="wind_speed_unit">وحدة سرعة الرياح:</string>
 </resources>

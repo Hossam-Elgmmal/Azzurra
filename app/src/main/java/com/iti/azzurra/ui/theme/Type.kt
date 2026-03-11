@@ -4,6 +4,7 @@ import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import com.iti.azzurra.R
 
 private val ManropeFontFamily = FontFamily(
@@ -80,12 +81,12 @@ private val AlmaraiFontFamily = FontFamily(
 private val baseline = Typography()
 
 val EnglishTypography = Typography(
-    displayLarge = baseline.displayLarge.copy(fontFamily = AmiriFontFamily),
-    displayMedium = baseline.displayMedium.copy(fontFamily = AmiriFontFamily),
-    displaySmall = baseline.displaySmall.copy(fontFamily = AmiriFontFamily),
-    headlineLarge = baseline.headlineLarge.copy(fontFamily = AmiriFontFamily),
-    headlineMedium = baseline.headlineMedium.copy(fontFamily = AmiriFontFamily),
-    headlineSmall = baseline.headlineSmall.copy(fontFamily = AmiriFontFamily),
+    displayLarge = baseline.displayLarge.copy(fontFamily = AmiriFontFamily, fontSize = 61.sp),
+    displayMedium = baseline.displayMedium.copy(fontFamily = AmiriFontFamily, fontSize = 49.sp),
+    displaySmall = baseline.displaySmall.copy(fontFamily = AmiriFontFamily, fontSize = 40.sp),
+    headlineLarge = baseline.headlineLarge.copy(fontFamily = AmiriFontFamily, fontSize = 36.sp),
+    headlineMedium = baseline.headlineMedium.copy(fontFamily = AmiriFontFamily, fontSize = 32.sp),
+    headlineSmall = baseline.headlineSmall.copy(fontFamily = AmiriFontFamily, fontSize = 28.sp),
     titleLarge = baseline.titleLarge.copy(fontFamily = ManropeFontFamily),
     titleMedium = baseline.titleMedium.copy(fontFamily = ManropeFontFamily),
     titleSmall = baseline.titleSmall.copy(fontFamily = ManropeFontFamily),
@@ -98,12 +99,12 @@ val EnglishTypography = Typography(
 )
 
 val ArabicTypography = Typography(
-    displayLarge = baseline.displayLarge.copy(fontFamily = AmiriFontFamily),
-    displayMedium = baseline.displayMedium.copy(fontFamily = AmiriFontFamily),
-    displaySmall = baseline.displaySmall.copy(fontFamily = AmiriFontFamily),
-    headlineLarge = baseline.headlineLarge.copy(fontFamily = AmiriFontFamily),
-    headlineMedium = baseline.headlineMedium.copy(fontFamily = AmiriFontFamily),
-    headlineSmall = baseline.headlineSmall.copy(fontFamily = AmiriFontFamily),
+    displayLarge = baseline.displayLarge.copy(fontFamily = AmiriFontFamily, fontSize = 61.sp),
+    displayMedium = baseline.displayMedium.copy(fontFamily = AmiriFontFamily, fontSize = 49.sp),
+    displaySmall = baseline.displaySmall.copy(fontFamily = AmiriFontFamily, fontSize = 40.sp),
+    headlineLarge = baseline.headlineLarge.copy(fontFamily = AmiriFontFamily, fontSize = 36.sp),
+    headlineMedium = baseline.headlineMedium.copy(fontFamily = AmiriFontFamily, fontSize = 32.sp),
+    headlineSmall = baseline.headlineSmall.copy(fontFamily = AmiriFontFamily, fontSize = 28.sp),
     titleLarge = baseline.titleLarge.copy(fontFamily = AlmaraiFontFamily),
     titleMedium = baseline.titleMedium.copy(fontFamily = AlmaraiFontFamily),
     titleSmall = baseline.titleSmall.copy(fontFamily = AlmaraiFontFamily),

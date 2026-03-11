@@ -67,6 +67,14 @@ class SettingsViewModel @Inject constructor(
                         it.copy(showThemeDialog = action.open)
                     }
                 }
+                is SettingsAction.MapDialogToggle -> {
+                    _state.update {
+                        it.copy(shouldShowMapDialog = action.open)
+                    }
+                }
+                SettingsAction.GetCurrentLocation -> {
+                    //TODO()
+                }
             }
         }
     }

@@ -12,4 +12,6 @@ sealed interface SettingsAction {
     data class UpdateWindSpeedUnit(val windSpeedUnit: WindSpeedUnit) : SettingsAction
     data class LanguageDialogToggle(val open: Boolean) : SettingsAction
     data class ThemeDialogToggle(val open: Boolean) : SettingsAction
+    data class MapDialogToggle(val open: Boolean) : SettingsAction
+    data object GetCurrentLocation : SettingsAction
 }

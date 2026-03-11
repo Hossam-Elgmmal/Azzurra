@@ -22,4 +22,21 @@
     <string name="select_language">Select Language</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="follow_system">Follow System</string>
+    <string name="theme">Theme</string>
+    <string name="select_theme">Select Theme</string>
+    <string name="done">Done</string>
+    <string name="use_gps">Use GPS</string>
+    <string name="set_current_location">Set Current Location:</string>
+    <string name="map">Map</string>
+    <string name="gps">GPS</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="kelvin">K</string>
+    <string name="set_temperature_unit">Set Temperature Unit:</string>
+    <string name="mph">mph</string>
+    <string name="m_s">m/s</string>
+    <string name="wind_speed_unit">Wind Speed Unit:</string>
 </resources>
