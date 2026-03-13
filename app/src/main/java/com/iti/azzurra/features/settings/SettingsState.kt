@@ -6,7 +6,6 @@ data class SettingsState(
     val settings: UserSettings = UserSettings(),
     val showLanguageDialog: Boolean = false,
     val showThemeDialog: Boolean = false,
-    val shouldShowMapDialog: Boolean = false,
     val shouldShowLocationPermissionDialog: Boolean = false,
     val cityName: String = ""
 )

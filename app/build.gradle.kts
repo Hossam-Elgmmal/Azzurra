@@ -44,6 +44,7 @@ android {
         androidResources {
             localeFilters.addAll(setOf("en", "ar"))
         }
+        manifestPlaceholders["MAPS_API_KEY"] = myProperties.getProperty("MAPS_API_KEY")
     }
 
     buildTypes {
@@ -141,4 +142,9 @@ dependencies {
 
     //play services location
     implementation(libs.play.services.location)
+
+    //google maps
+    implementation(libs.play.services.maps)
+    implementation(libs.places)
+    implementation(libs.maps.compose)
 }

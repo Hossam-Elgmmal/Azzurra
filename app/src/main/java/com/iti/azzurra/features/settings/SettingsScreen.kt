@@ -45,12 +45,14 @@ import dev.chrisbanes.haze.hazeEffect
 
 @Composable
 fun SettingsRoot(
+    showMapDialog: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     SettingsScreen(
         state = state,
+        showMapDialog = showMapDialog,
         onAction = viewModel::onAction
     )
 }
@@ -59,6 +61,7 @@ fun SettingsRoot(
 @Composable
 fun SettingsScreen(
     state: SettingsState,
+    showMapDialog: () -> Unit,
     onAction: (SettingsAction) -> Unit,
 ) {
     val hazeState = LocalHazeState.current
@@ -121,9 +124,7 @@ fun SettingsScreen(
                 SetCurrentLocationCard(
                     hazeState = hazeState,
                     cityName = state.cityName,
-                    openMap = {
-                        onAction(SettingsAction.MapDialogToggle(true))
-                    },
+                    openMap = showMapDialog,
                     openGps = {
                         if (context.hasLocationPermission()) {
                             onAction(SettingsAction.GetCurrentLocation)
@@ -168,11 +169,6 @@ fun SettingsScreen(
             selectedTheme = state.settings.theme
         )
     }
-    if (state.shouldShowMapDialog) {
-        MapDialog(
-            onDismissRequest = { onAction(SettingsAction.MapDialogToggle(false)) }
-        )
-    }
 
     if (state.shouldShowLocationPermissionDialog) {
         PermissionsDialog(
@@ -200,6 +196,7 @@ private fun SettingsScreenPreview() {
     AzzurraTheme {
         SettingsScreen(
             state = SettingsState(),
+            showMapDialog = {},
             onAction = {}
         )
     }

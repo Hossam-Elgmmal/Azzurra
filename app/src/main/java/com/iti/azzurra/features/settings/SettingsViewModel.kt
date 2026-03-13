@@ -95,12 +95,6 @@ class SettingsViewModel @Inject constructor(
                 }
             }
 
-            is SettingsAction.MapDialogToggle -> {
-                _state.update {
-                    it.copy(shouldShowMapDialog = action.open)
-                }
-            }
-
             SettingsAction.GetLocationPermission -> {
                 _state.update {
                     it.copy(shouldShowLocationPermissionDialog = true)

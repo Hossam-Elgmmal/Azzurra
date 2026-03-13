@@ -48,11 +48,11 @@ import com.iti.azzurra.common.AzzurraSnackbarHost
 import com.iti.azzurra.common.ObserveEvent
 import com.iti.azzurra.common.SnackbarController
 import com.iti.azzurra.features.alerts.alertsNavigation
+import com.iti.azzurra.features.favorites.FavoritesRoute
 import com.iti.azzurra.features.favorites.favoritesNavigation
 import com.iti.azzurra.features.home.HomeRoute
 import com.iti.azzurra.features.home.homeNavigation
 import com.iti.azzurra.features.map.MapDialog
-import com.iti.azzurra.features.settings.SettingsRoute
 import com.iti.azzurra.features.settings.settingsNavigation
 import com.skydoves.cloudy.cloudy
 import com.skydoves.cloudy.rememberSky
@@ -73,7 +73,8 @@ fun MainNavigation(
     val scope = rememberCoroutineScope()
     val navController = rememberNavController()
     val currentRoute by navController.currentBackStackEntryAsState()
-    val canOpenMapDialog = currentRoute?.destination?.hasRoute(SettingsRoute::class)?.not() ?: true
+    val showMapButton = (currentRoute?.destination?.hasRoute(HomeRoute::class) ?: false) ||
+            (currentRoute?.destination?.hasRoute(FavoritesRoute::class) ?: false)
     var shouldShowMapDialog by remember { mutableStateOf(false) }
     val sky = rememberSky()
     val hazeStateForApp = rememberHazeState()
@@ -102,7 +103,7 @@ fun MainNavigation(
     Scaffold(
         snackbarHost = { AzzurraSnackbarHost(snackbarHostState) },
         floatingActionButton = {
-            if (canOpenMapDialog) {
+            if (showMapButton) {
                 FloatingActionButton(
                     onClick = { shouldShowMapDialog = true },
                 ) {
@@ -187,7 +188,11 @@ fun MainNavigation(
                     homeNavigation()
                     favoritesNavigation()
                     alertsNavigation()
-                    settingsNavigation()
+                    settingsNavigation(
+                        showMapDialog = {
+                            shouldShowMapDialog = true
+                        }
+                    )
                 }
             }
         }

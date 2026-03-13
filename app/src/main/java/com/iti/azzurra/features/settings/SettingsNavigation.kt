@@ -4,8 +4,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 
-fun NavGraphBuilder.settingsNavigation() {
+fun NavGraphBuilder.settingsNavigation(
+    showMapDialog: () -> Unit
+) {
     composable<SettingsRoute> {
-        SettingsRoot()
+        SettingsRoot(
+            showMapDialog = showMapDialog
+        )
     }
 }
