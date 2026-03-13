@@ -138,4 +138,7 @@ dependencies {
 
     // appcompat
     implementation(libs.androidx.appcompat)
+
+    //play services location
+    implementation(libs.play.services.location)
 }

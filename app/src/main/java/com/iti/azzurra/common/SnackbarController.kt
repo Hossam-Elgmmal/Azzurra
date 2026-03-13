@@ -14,11 +14,11 @@ object SnackbarController {
 }
 
 data class SnackbarEvent(
-    val message: String,
+    val messageId: Int,
     val snackbarAction: SnackbarAction? = null
 )
 
 data class SnackbarAction(
-    val name: String,
+    val nameId: String,
     val action: suspend () -> Unit
 )

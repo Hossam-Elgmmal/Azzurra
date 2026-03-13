@@ -2,6 +2,7 @@ package com.iti.azzurra.data.weather.local
 
 
 import com.iti.azzurra.data.weather.local.daos.FavoriteDao
+import com.iti.azzurra.data.weather.local.daos.GeoLocationDao
 import com.iti.azzurra.data.weather.local.daos.LocationDao
 import com.iti.azzurra.data.weather.local.models.current_location.AirPollutionEntity
 import com.iti.azzurra.data.weather.local.models.current_location.DailyForecastEntity
@@ -11,11 +12,13 @@ import com.iti.azzurra.data.weather.local.models.favorites.FavoriteAirPollutionE
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteDailyForecastEntity
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteHourlyForecastEntity
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteLocationEntity
+import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
 import javax.inject.Inject
 
 class LocalWeatherDataSourceImp @Inject constructor(
     private val locationDao: LocationDao,
     private val favoriteDao: FavoriteDao,
+    private val geoLocationDao: GeoLocationDao
 ) : LocalWeatherDataSource {
 
     override fun getFullWeatherById(
@@ -68,5 +71,21 @@ class LocalWeatherDataSourceImp @Inject constructor(
     override suspend fun insertFavoriteAirPollution(
         entities: List<FavoriteAirPollutionEntity>
     ) = favoriteDao.insertFavoriteAirPollution(entities)
+
+    override suspend fun insertGeoLocation(
+        entity: GeoLocationEntity
+    ) = geoLocationDao.insertGeoLocation(entity)
+
+    override suspend fun getGeoLocationByIdOnce(
+        locationId: String
+    ) = geoLocationDao.getGeoLocationByIdOnce(locationId)
+
+    override fun getGeoLocationByIdFlow(
+        locationId: String
+    ) = geoLocationDao.getGeoLocationByIdFlow(locationId)
+
+    override suspend fun deleteGeoLocation(
+        locationId: String
+    ) = geoLocationDao.deleteGeoLocationById(locationId)
 
 }

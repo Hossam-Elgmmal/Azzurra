@@ -10,6 +10,7 @@ import com.iti.azzurra.data.weather.local.models.favorites.FavoriteDailyForecast
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteHourlyForecastEntity
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteLocationEntity
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteWithFullWeather
+import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
 import kotlinx.coroutines.flow.Flow
 
 interface LocalWeatherDataSource {
@@ -40,4 +41,11 @@ interface LocalWeatherDataSource {
 
     suspend fun insertFavoriteAirPollution(entities: List<FavoriteAirPollutionEntity>)
 
+    suspend fun insertGeoLocation(entity: GeoLocationEntity)
+
+    suspend fun getGeoLocationByIdOnce(locationId: String): GeoLocationEntity?
+
+    fun getGeoLocationByIdFlow(locationId: String): Flow<GeoLocationEntity?>
+
+    suspend fun deleteGeoLocation(locationId: String)
 }

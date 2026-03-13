@@ -2,6 +2,7 @@ package com.iti.azzurra.data.weather.remote
 
 import com.iti.azzurra.BuildConfig
 import com.iti.azzurra.data.weather.remote.models.daily.DailyForecastResponseDto
+import com.iti.azzurra.data.weather.remote.models.geocoding.ReverseGeocodingResponseDto
 import com.iti.azzurra.data.weather.remote.models.hourly.HourlyForecastResponseDto
 import com.iti.azzurra.data.weather.remote.models.pollution.AirPollutionForecastResponseDto
 import retrofit2.Response
@@ -36,4 +37,12 @@ interface WeatherService {
         @Query("lon") longitude: Double,
         @Query("appid") apiKey: String = BuildConfig.WEATHER_API_KEY
     ): Response<AirPollutionForecastResponseDto>
+
+    @GET("geo/1.0/reverse")
+    suspend fun reverseGeocode(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("limit") limit: Int = 1,
+        @Query("appid") apiKey: String = BuildConfig.WEATHER_API_KEY
+    ): Response<List<ReverseGeocodingResponseDto>>
 }

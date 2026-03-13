@@ -7,8 +7,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,14 +19,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.iti.azzurra.R
+import com.iti.azzurra.common.GradientIcon
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeEffect
 
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun SetCurrentLocationCard(
     hazeState: HazeState,
+    cityName: String,
     openMap: () -> Unit,
     openGps: () -> Unit
 ) {
@@ -35,19 +40,42 @@ fun SetCurrentLocationCard(
             .defaultMinSize(minHeight = 54.dp)
             .fillMaxWidth()
             .hazeEffect(state = hazeState)
-            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.4f))
-            .padding(16.dp),
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
+            .padding(vertical = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        if (cityName.isNotBlank()) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+                GradientIcon(
+                    iconId = R.drawable.ic_location,
+                    modifier = Modifier
+                )
+                Text(
+                    text = cityName,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            HorizontalDivider()
+        }
         Text(
             text = stringResource(R.string.set_current_location),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
+                .padding(horizontal = 16.dp)
         )
         Row(
             modifier = Modifier
-                .align(Alignment.End),
+                .align(Alignment.End)
+                .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

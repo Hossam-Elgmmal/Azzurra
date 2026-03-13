@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.iti.azzurra.R
+import com.iti.azzurra.common.GradientIcon
 import com.iti.azzurra.data.settings.models.ThemeSetting
 
 @Composable
@@ -46,10 +47,9 @@ fun ThemeDialog(
                 modifier = Modifier
                     .padding(start = 20.dp, top = 20.dp)
             ) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_theme),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurface
+                GradientIcon(
+                    iconId = R.drawable.ic_theme,
+                    modifier = Modifier
                 )
                 Text(
                     text = stringResource(R.string.select_theme),

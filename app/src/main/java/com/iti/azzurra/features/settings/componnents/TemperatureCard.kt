@@ -37,7 +37,7 @@ fun TemperatureCard(
             .defaultMinSize(minHeight = 54.dp)
             .fillMaxWidth()
             .hazeEffect(state = hazeState)
-            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.4f))
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {

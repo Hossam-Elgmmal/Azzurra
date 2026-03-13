@@ -4,6 +4,7 @@ import com.iti.azzurra.BuildConfig
 import com.iti.azzurra.core.network.WeatherDataError
 import com.iti.azzurra.core.network.WeatherResult
 import com.iti.azzurra.data.weather.remote.models.daily.DailyForecastResponseDto
+import com.iti.azzurra.data.weather.remote.models.geocoding.ReverseGeocodingResponseDto
 import com.iti.azzurra.data.weather.remote.models.hourly.HourlyForecastResponseDto
 import com.iti.azzurra.data.weather.remote.models.pollution.AirPollutionForecastResponseDto
 
@@ -31,4 +32,10 @@ interface RemoteWeatherDataSource {
         longitude: Double,
         apiKey: String = BuildConfig.WEATHER_API_KEY
     ): WeatherResult<AirPollutionForecastResponseDto, WeatherDataError>
+
+    suspend fun getReverseGeoCode(
+        latitude: Double,
+        longitude: Double,
+        apiKey: String = BuildConfig.WEATHER_API_KEY
+    ): WeatherResult<List<ReverseGeocodingResponseDto>, WeatherDataError>
 }

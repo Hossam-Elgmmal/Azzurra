@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">أزورّا</string>
+    <string name="app_name">أزورا</string>
     <string name="home">الرئيسية</string>
     <string name="favorites">المفضلة</string>
     <string name="alerts">التنبيهات</string>
@@ -40,4 +40,11 @@
     <string name="mph">ميل/س</string>
     <string name="m_s">م/ث</string>
     <string name="wind_speed_unit">وحدة سرعة الرياح:</string>
+    <string name="allow">السماح</string>
+    <string name="notification_permission">إذن الإشعارات</string>
+    <string name="please_allow_azzurra_to_send_you_notifications">يرجى السماح لتطبيق أزورا بإرسال الإشعارات إليك.</string>
+    <string name="updated_current_location">تم تحديث الموقع الحالي!</string>
+    <string name="canceled_obtaining_location">تم إلغاء الحصول على الموقع.</string>
+    <string name="location_permission">إذن الموقع</string>
+    <string name="please_allow_azzurra_to_access_your_location">يرجى السماح لتطبيق أزورا بالوصول إلى موقعك.</string>
 </resources>

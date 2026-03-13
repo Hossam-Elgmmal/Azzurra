@@ -12,9 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -35,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -69,6 +68,7 @@ fun MainNavigation(
     isDarkTheme: Boolean
 ) {
 
+    val context = LocalContext.current.applicationContext
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val navController = rememberNavController()
@@ -88,15 +88,13 @@ fun MainNavigation(
     ObserveEvent(SnackbarController.events) { snackbarEvent ->
         scope.launch {
             snackbarHostState.currentSnackbarData?.dismiss()
-            if (snackbarEvent.message.isNotBlank()) {
-                val result = snackbarHostState.showSnackbar(
-                    message = snackbarEvent.message,
-                    actionLabel = snackbarEvent.snackbarAction?.name,
-                    withDismissAction = snackbarEvent.snackbarAction != null
-                )
-                if (result == SnackbarResult.ActionPerformed) {
-                    snackbarEvent.snackbarAction?.action?.invoke()
-                }
+            val result = snackbarHostState.showSnackbar(
+                message = context.getString(snackbarEvent.messageId),
+                actionLabel = snackbarEvent.snackbarAction?.nameId,
+                withDismissAction = snackbarEvent.snackbarAction != null
+            )
+            if (result == SnackbarResult.ActionPerformed) {
+                snackbarEvent.snackbarAction?.action?.invoke()
             }
         }
     }

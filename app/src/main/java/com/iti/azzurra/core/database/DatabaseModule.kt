@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.iti.azzurra.data.alert.local.daos.AlertDao
 import com.iti.azzurra.data.weather.local.daos.FavoriteDao
+import com.iti.azzurra.data.weather.local.daos.GeoLocationDao
 import com.iti.azzurra.data.weather.local.daos.LocationDao
 import dagger.Module
 import dagger.Provides
@@ -44,4 +45,10 @@ object DatabaseModule {
     fun provideAlertDao(
         weatherDatabase: WeatherDatabase
     ): AlertDao = weatherDatabase.alertDao()
+
+    @Provides
+    @Singleton
+    fun provideGeoLocationDao(
+        weatherDatabase: WeatherDatabase
+    ): GeoLocationDao = weatherDatabase.geoLocationDao()
 }

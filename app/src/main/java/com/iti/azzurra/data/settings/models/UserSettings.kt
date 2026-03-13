@@ -11,5 +11,6 @@ data class UserSettings(
     val windSpeedUnit: WindSpeedUnit = WindSpeedUnit.METER_PER_SEC,
     val savedLatitude: Double = 0.0,
     val savedLongitude: Double = 0.0,
-    val weatherCondition: WeatherCondition = WeatherCondition.UNKNOWN
+    val weatherCondition: WeatherCondition = WeatherCondition.UNKNOWN,
+    val city: String = "",
 )

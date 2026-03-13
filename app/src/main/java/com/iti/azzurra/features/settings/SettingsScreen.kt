@@ -1,5 +1,6 @@
 package com.iti.azzurra.features.settings
 
+import android.Manifest
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,12 +21,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.iti.azzurra.R
+import com.iti.azzurra.common.PermissionsDialog
 import com.iti.azzurra.features.map.MapDialog
 import com.iti.azzurra.features.settings.componnents.GpsSwitch
 import com.iti.azzurra.features.settings.componnents.LanguageDialog
@@ -37,6 +40,7 @@ import com.iti.azzurra.features.settings.componnents.WindSpeedCard
 import com.iti.azzurra.main_navigation.LocalBottomBarHeight
 import com.iti.azzurra.main_navigation.LocalHazeState
 import com.iti.azzurra.ui.theme.AzzurraTheme
+import com.iti.azzurra.utils.hasLocationPermission
 import dev.chrisbanes.haze.hazeEffect
 
 @Composable
@@ -58,6 +62,7 @@ fun SettingsScreen(
     onAction: (SettingsAction) -> Unit,
 ) {
     val hazeState = LocalHazeState.current
+    val context = LocalContext.current
 
     Scaffold(
         containerColor = Color.Transparent,
@@ -75,7 +80,7 @@ fun SettingsScreen(
                 ),
                 modifier = Modifier
                     .hazeEffect(state = hazeState)
-                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
+                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.7f))
             )
         }
     ) { innerPadding ->
@@ -115,11 +120,16 @@ fun SettingsScreen(
             item {
                 SetCurrentLocationCard(
                     hazeState = hazeState,
+                    cityName = state.cityName,
                     openMap = {
                         onAction(SettingsAction.MapDialogToggle(true))
                     },
                     openGps = {
-                        onAction(SettingsAction.GetCurrentLocation)
+                        if (context.hasLocationPermission()) {
+                            onAction(SettingsAction.GetCurrentLocation)
+                        } else {
+                            onAction(SettingsAction.GetLocationPermission)
+                        }
                     }
                 )
             }
@@ -161,6 +171,25 @@ fun SettingsScreen(
     if (state.shouldShowMapDialog) {
         MapDialog(
             onDismissRequest = { onAction(SettingsAction.MapDialogToggle(false)) }
+        )
+    }
+
+    if (state.shouldShowLocationPermissionDialog) {
+        PermissionsDialog(
+            titleId = R.string.location_permission,
+            textId = R.string.please_allow_azzurra_to_access_your_location,
+            onDismiss = {
+                onAction(SettingsAction.CancelGettingLocationPermission)
+            },
+            onGranted = {
+                onAction(SettingsAction.GetCurrentLocation)
+            },
+            neededPermissions = arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ),
+            iconId = R.drawable.ic_location,
+            allPermissionsNeeded = false,
         )
     }
 }

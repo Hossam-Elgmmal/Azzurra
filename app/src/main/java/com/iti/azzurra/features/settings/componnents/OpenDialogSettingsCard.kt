@@ -21,7 +21,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.iti.azzurra.R
-import com.iti.azzurra.features.settings.SettingsAction
+import com.iti.azzurra.common.GradientIcon
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeEffect
 
@@ -43,15 +43,14 @@ fun OpenDialogSettingsCard(
             .defaultMinSize(minHeight = 54.dp)
             .fillMaxWidth()
             .hazeEffect(state = hazeState)
-            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.4f))
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Icon(
-            imageVector = ImageVector.vectorResource(id = iconId),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurface
+        GradientIcon(
+            iconId = iconId,
+            modifier = Modifier
         )
         Text(
             text = stringResource(titleId),

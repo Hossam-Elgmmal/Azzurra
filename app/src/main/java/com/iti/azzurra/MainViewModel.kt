@@ -15,7 +15,7 @@ class MainViewModel @Inject constructor(
     private val userSettingsRepo: UserSettingsRepo
 ) : ViewModel() {
 
-    val mainUiState: Flow<MainUiState> = userSettingsRepo.getUserSettingsFlow()
+    val mainUiState: Flow<MainUiState> = userSettingsRepo.settingsFlow
         .map {
             MainUiState.Ready(it)
         }
