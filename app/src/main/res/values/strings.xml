@@ -46,4 +46,12 @@
     <string name="canceled_obtaining_location">Canceled obtaining location.</string>
     <string name="location_permission">Location Permission</string>
     <string name="please_allow_azzurra_to_access_your_location">Please, allow Azzurra to access your location.</string>
+    <string name="clear_search_text">Clear search text</string>
+    <string name="go_back">Go Back</string>
+    <string name="search_for_city">Search for city…</string>
+    <string name="set_current">Set Current</string>
+    <string name="add_favorite">Add Favorite</string>
+    <string name="city_added_to_favorites">City added to favorites</string>
+    <string name="unable_to_add_city_to_favorites">Unable to add city to favorites</string>
+    <string name="unable_to_set_as_current_location">Unable to set as current location</string>
 </resources>

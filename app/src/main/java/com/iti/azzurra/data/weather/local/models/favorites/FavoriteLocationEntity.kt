@@ -11,5 +11,4 @@ data class FavoriteLocationEntity(
     val countryCode: String,
     val latitude: Double,
     val longitude: Double,
-    val timezoneOffset: Int
 )

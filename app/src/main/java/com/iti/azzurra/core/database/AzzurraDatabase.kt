@@ -12,9 +12,7 @@ import com.iti.azzurra.data.weather.local.models.current_location.AirPollutionEn
 import com.iti.azzurra.data.weather.local.models.current_location.DailyForecastEntity
 import com.iti.azzurra.data.weather.local.models.current_location.HourlyForecastEntity
 import com.iti.azzurra.data.weather.local.models.current_location.LocationEntity
-import com.iti.azzurra.data.weather.local.models.favorites.FavoriteAirPollutionEntity
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteDailyForecastEntity
-import com.iti.azzurra.data.weather.local.models.favorites.FavoriteHourlyForecastEntity
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteLocationEntity
 import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocalNamesConverter
 import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
@@ -25,10 +23,8 @@ import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
         HourlyForecastEntity::class,
         DailyForecastEntity::class,
         AirPollutionEntity::class,
-        FavoriteLocationEntity::class,
-        FavoriteHourlyForecastEntity::class,
         FavoriteDailyForecastEntity::class,
-        FavoriteAirPollutionEntity::class,
+        FavoriteLocationEntity::class,
         WeatherAlertEntity::class,
         GeoLocationEntity::class
     ],

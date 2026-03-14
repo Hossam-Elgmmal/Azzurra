@@ -12,15 +12,18 @@ import kotlinx.coroutines.withContext
 @Composable
 fun <T> ObserveEvent(
     flow: Flow<T>,
+    isEnabled: Boolean = true,
     key1: Any? = null,
     key2: Any? = null,
     onEvent: suspend (T) -> Unit
 ) {
-    val lifecycleOwner = LocalLifecycleOwner.current
-    LaunchedEffect(lifecycleOwner.lifecycle, key1, key2, flow) {
-        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            withContext(Dispatchers.Main.immediate) {
-                flow.collect(onEvent)
+    if (isEnabled) {
+        val lifecycleOwner = LocalLifecycleOwner.current
+        LaunchedEffect(lifecycleOwner.lifecycle, key1, key2, flow) {
+            lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                withContext(Dispatchers.Main.immediate) {
+                    flow.collect(onEvent)
+                }
             }
         }
     }

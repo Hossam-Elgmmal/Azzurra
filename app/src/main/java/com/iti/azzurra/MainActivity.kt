@@ -1,13 +1,16 @@
 package com.iti.azzurra
 
 import android.content.IntentSender
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -70,6 +73,12 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContent {
             val isDarkTheme = shouldShowDarkTheme(mainUiState)
+            LaunchedEffect(isDarkTheme) {
+                enableEdgeToEdge(
+                    statusBarStyle = if (isDarkTheme) SystemBarStyle.dark(Color.TRANSPARENT)
+                    else SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+                )
+            }
             AzzurraTheme(
                 darkTheme = isDarkTheme,
                 typography = getTypography(mainUiState)

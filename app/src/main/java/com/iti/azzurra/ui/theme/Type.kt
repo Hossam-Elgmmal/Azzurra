@@ -55,7 +55,7 @@ private val AmiriFontFamily = FontFamily(
         weight = FontWeight.ExtraBold,
     ),
 )
-private val AlmaraiFontFamily = FontFamily(
+val AlmaraiFontFamily = FontFamily(
     Font(
         resId = R.font.almarai,
         weight = FontWeight.Normal,

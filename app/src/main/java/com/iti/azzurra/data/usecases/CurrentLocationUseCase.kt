@@ -6,9 +6,7 @@ import com.iti.azzurra.common.SnackbarEvent
 import com.iti.azzurra.core.location.LocationController
 import com.iti.azzurra.core.network.WeatherDataError
 import com.iti.azzurra.core.network.WeatherResult
-import com.iti.azzurra.core.network.onFailure
 import com.iti.azzurra.core.network.onSuccess
-import com.iti.azzurra.core.network.toUserMessageId
 import com.iti.azzurra.data.settings.UserSettingsRepo
 import com.iti.azzurra.data.weather.WeatherRepo
 import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
@@ -26,22 +24,16 @@ class CurrentLocationUseCase @Inject constructor(
         return weatherRepo.getReverseGeoCode(
             latitude = location.latitude,
             longitude = location.longitude
-        ).onSuccess { _ ->
+        ).onSuccess { newGeoLocation ->
             settingsRepo.updateUserSettings { oldSettings ->
                 oldSettings.copy(
-                    savedLatitude = location.latitude,
-                    savedLongitude = location.longitude,
+                    savedLatitude = newGeoLocation.latitude,
+                    savedLongitude = newGeoLocation.longitude,
                 )
             }
             SnackbarController.sendEvent(
                 SnackbarEvent(
                     messageId = R.string.updated_current_location
-                )
-            )
-        }.onFailure {
-            SnackbarController.sendEvent(
-                SnackbarEvent(
-                    messageId = it.toUserMessageId()
                 )
             )
         }

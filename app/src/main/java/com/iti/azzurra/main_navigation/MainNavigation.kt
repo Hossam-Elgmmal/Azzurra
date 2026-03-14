@@ -86,7 +86,10 @@ fun MainNavigation(
         }
     }
 
-    ObserveEvent(SnackbarController.events) { snackbarEvent ->
+    ObserveEvent(
+        flow = SnackbarController.events,
+        isEnabled = SnackbarController.showOnDefaultScaffold
+    ) { snackbarEvent ->
         scope.launch {
             snackbarHostState.currentSnackbarData?.dismiss()
             val result = snackbarHostState.showSnackbar(
@@ -127,11 +130,15 @@ fun MainNavigation(
                         .border(1.dp, MaterialTheme.colorScheme.surfaceContainerHigh, CircleShape)
                         .background(MaterialTheme.colorScheme.surfaceContainer, CircleShape)
                         .cloudy(sky, radius = 32, cpuBlurEnabled = false)
-                        .background(MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.4f), CircleShape)
+                        .background(
+                            MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.4f),
+                            CircleShape
+                        )
                         .padding(6.dp)
                 ) {
                     BottomNavRoute.entries.forEach { route ->
-                        val isSelected = currentRoute?.destination?.hasRoute(route.destination::class) ?: false
+                        val isSelected =
+                            currentRoute?.destination?.hasRoute(route.destination::class) ?: false
                         AzzurraBottomNavigationItem(
                             selected = isSelected,
                             onClick = {
@@ -156,9 +163,9 @@ fun MainNavigation(
             LocalHazeState provides hazeStateForApp
         ) {
             Box(
-               modifier = Modifier
-                   .fillMaxSize()
-                   .sky(sky)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .sky(sky)
             ) {
                 val color = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.4f)
                 AsyncImage(
@@ -166,7 +173,7 @@ fun MainNavigation(
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize()
-                        .drawWithContent{
+                        .drawWithContent {
                             drawContent()
                             if (isDarkTheme) {
                                 drawRect(color = color)

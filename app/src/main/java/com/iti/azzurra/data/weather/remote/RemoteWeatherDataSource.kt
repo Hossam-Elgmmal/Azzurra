@@ -7,6 +7,7 @@ import com.iti.azzurra.data.weather.remote.models.daily.DailyForecastResponseDto
 import com.iti.azzurra.data.weather.remote.models.geocoding.ReverseGeocodingResponseDto
 import com.iti.azzurra.data.weather.remote.models.hourly.HourlyForecastResponseDto
 import com.iti.azzurra.data.weather.remote.models.pollution.AirPollutionForecastResponseDto
+import com.iti.azzurra.utils.Constants
 
 interface RemoteWeatherDataSource {
     suspend fun getHourlyForecast(
@@ -24,7 +25,7 @@ interface RemoteWeatherDataSource {
         language: String,
         apiKey: String = BuildConfig.WEATHER_API_KEY,
         units: String = "metric",
-        count: Int = 16,
+        count: Int = Constants.DAILY_FORECAST_ITEM_COUNT,
     ): WeatherResult<DailyForecastResponseDto, WeatherDataError>
 
     suspend fun getAirPollutionForecast(

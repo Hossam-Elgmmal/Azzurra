@@ -47,4 +47,12 @@
     <string name="canceled_obtaining_location">تم إلغاء الحصول على الموقع.</string>
     <string name="location_permission">إذن الموقع</string>
     <string name="please_allow_azzurra_to_access_your_location">يرجى السماح لتطبيق أزورا بالوصول إلى موقعك.</string>
+    <string name="clear_search_text">مسح نص البحث</string>
+    <string name="go_back">العودة</string>
+    <string name="search_for_city">ابحث عن مدينة…</string>
+    <string name="set_current">تعيين كموقع حالي</string>
+    <string name="add_favorite">إضافة إلى المفضلة</string>
+    <string name="city_added_to_favorites">تمت إضافة المدينة إلى المفضلة</string>
+    <string name="unable_to_add_city_to_favorites">تعذر إضافة المدينة إلى المفضلة</string>
+    <string name="unable_to_set_as_current_location">تعذر تعيين الموقع كموقع حالي</string>
 </resources>

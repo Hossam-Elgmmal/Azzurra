@@ -28,7 +28,7 @@ class SettingsViewModel @Inject constructor(
     private val settingsRepo: UserSettingsRepo,
     private val weatherRepo: WeatherRepo,
     private val currentLocationUseCase: CurrentLocationUseCase,
-    @param:Dispatcher(AzzurraDispatchers.IODispatcher) private val dispatcher: CoroutineDispatcher,
+    @param:Dispatcher(AzzurraDispatchers.DefaultDispatcher) private val dispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<SettingsState> = MutableStateFlow(SettingsState())
@@ -36,7 +36,7 @@ class SettingsViewModel @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     val state: StateFlow<SettingsState> = settingsRepo.settingsFlow
         .flatMapLatest { userSettings ->
-            weatherRepo.getCurrentCity(
+            weatherRepo.getCurrentLocalCity(
                 latitude = userSettings.savedLatitude,
                 longitude = userSettings.savedLongitude,
             ).flatMapLatest { geoLocation ->
@@ -44,7 +44,7 @@ class SettingsViewModel @Inject constructor(
                     oldState.copy(
                         settings = userSettings,
                         cityName = geoLocation?.localizedNames?.get(userSettings.language.getCode())
-                            ?: ""
+                            ?: geoLocation?.nameEn ?: ""
                     )
                 }
             }

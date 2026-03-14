@@ -1,15 +1,19 @@
 package com.iti.azzurra.common
 
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 
 object SnackbarController {
 
-    private val _events = Channel<SnackbarEvent>()
-    val events = _events.receiveAsFlow()
+    var showOnDefaultScaffold by mutableStateOf(true)
+    private val _events = MutableSharedFlow<SnackbarEvent>()
+    val events = _events.asSharedFlow()
 
     suspend fun sendEvent(event: SnackbarEvent) {
-        _events.send(event)
+        _events.emit(event)
     }
 }
 

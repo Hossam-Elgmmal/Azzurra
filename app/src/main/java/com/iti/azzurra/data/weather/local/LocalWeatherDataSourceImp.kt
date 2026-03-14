@@ -8,9 +8,7 @@ import com.iti.azzurra.data.weather.local.models.current_location.AirPollutionEn
 import com.iti.azzurra.data.weather.local.models.current_location.DailyForecastEntity
 import com.iti.azzurra.data.weather.local.models.current_location.HourlyForecastEntity
 import com.iti.azzurra.data.weather.local.models.current_location.LocationEntity
-import com.iti.azzurra.data.weather.local.models.favorites.FavoriteAirPollutionEntity
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteDailyForecastEntity
-import com.iti.azzurra.data.weather.local.models.favorites.FavoriteHourlyForecastEntity
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteLocationEntity
 import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
 import javax.inject.Inject
@@ -45,32 +43,30 @@ class LocalWeatherDataSourceImp @Inject constructor(
         entities: List<AirPollutionEntity>
     ) = locationDao.insertAirPollution(entities)
 
-    override fun getAllFavoritesWithFullWeather() =
-        favoriteDao.getAllFavoritesWithFullWeather()
+    override fun getAllFavoriteLocations() =
+        favoriteDao.getAllFavoriteLocations()
 
-    override fun getFavoriteWithFullWeatherByLocationId(
-        locationId: String
-    ) = favoriteDao.getFavoriteWithFullWeatherByLocationId(locationId)
+    override suspend fun getFavoriteByLocationIdAndLanguageCode(
+        locationId: String,
+        languageCode: String,
+        todayMillis: Long
+    ): List<FavoriteDailyForecastEntity> {
+        return favoriteDao.getFavoriteByLocationIdAndLanguageCode(
+            locationId, languageCode, todayMillis
+        )
+    }
 
     override suspend fun insertFavoriteLocation(
-        entity: FavoriteLocationEntity
-    ) = favoriteDao.insertFavoriteLocation(entity)
+        favoriteLocation: FavoriteLocationEntity
+    ) : Unit = favoriteDao.insertFavoriteLocation(favoriteLocation)
 
     override suspend fun deleteFavoriteLocation(
         locationId: String
     ) = favoriteDao.deleteFavoriteLocation(locationId)
 
-    override suspend fun insertFavoriteHourlyForecast(
-        entities: List<FavoriteHourlyForecastEntity>
-    ) = favoriteDao.insertFavoriteHourlyForecast(entities)
-
     override suspend fun insertFavoriteDailyForecast(
         entities: List<FavoriteDailyForecastEntity>
     ) = favoriteDao.insertFavoriteDailyForecast(entities)
-
-    override suspend fun insertFavoriteAirPollution(
-        entities: List<FavoriteAirPollutionEntity>
-    ) = favoriteDao.insertFavoriteAirPollution(entities)
 
     override suspend fun insertGeoLocation(
         entity: GeoLocationEntity

@@ -3,13 +3,13 @@ package com.iti.azzurra.data.settings.datastore
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
-import androidx.datastore.dataStoreFile
 import com.iti.azzurra.data.settings.models.UserSettings
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import java.io.File
 import javax.inject.Singleton
 
 @Module
@@ -25,7 +25,7 @@ object DataStoreModule {
         return DataStoreFactory.create(
             serializer = dataStoreSerializer,
         ) {
-            context.dataStoreFile("user_settings.pb")
+            File(context.noBackupFilesDir, "datastore/user_settings.pb")
         }
     }
 }
