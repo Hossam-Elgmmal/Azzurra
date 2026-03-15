@@ -8,7 +8,6 @@ data class FavoriteDailyForecastEntity(
     val dayTimestamp: Long,
     val cityName: String,
     val countryCode: String,
-    val languageCode: String,
     val latitude: Double,
     val longitude: Double,
     val timezoneOffset: Int,

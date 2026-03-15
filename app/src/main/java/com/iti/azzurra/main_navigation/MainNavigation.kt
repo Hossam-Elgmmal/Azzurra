@@ -94,7 +94,7 @@ fun MainNavigation(
             snackbarHostState.currentSnackbarData?.dismiss()
             val result = snackbarHostState.showSnackbar(
                 message = context.getString(snackbarEvent.messageId),
-                actionLabel = snackbarEvent.snackbarAction?.nameId,
+                actionLabel = snackbarEvent.snackbarAction?.nameId?.let { context.getString(it) },
                 withDismissAction = snackbarEvent.snackbarAction != null
             )
             if (result == SnackbarResult.ActionPerformed) {

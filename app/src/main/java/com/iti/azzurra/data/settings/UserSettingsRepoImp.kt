@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.shareIn
-import kotlinx.io.IOException
+import java.io.IOException
 import javax.inject.Inject
 
 class UserSettingsRepoImp @Inject constructor(

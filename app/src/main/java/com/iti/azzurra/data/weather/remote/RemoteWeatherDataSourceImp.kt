@@ -35,7 +35,6 @@ class RemoteWeatherDataSourceImp @Inject constructor(
     override suspend fun getDailyForecast(
         latitude: Double,
         longitude: Double,
-        language: String,
         apiKey: String,
         units: String,
         count: Int
@@ -44,7 +43,6 @@ class RemoteWeatherDataSourceImp @Inject constructor(
             weatherService.getDailyForecast(
                 latitude = latitude,
                 longitude = longitude,
-                language = language,
                 apiKey = apiKey,
                 units = units,
                 count = count,

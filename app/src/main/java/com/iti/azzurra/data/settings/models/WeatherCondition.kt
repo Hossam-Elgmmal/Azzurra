@@ -25,27 +25,29 @@ enum class WeatherCondition {
     CLOUDY,
     UNKNOWN;
 
-    fun getWeatherCondition(id: Int): WeatherCondition {
-        return when (id) {
-            781 -> TORNADO
-            771 -> SQUALL
-            762 -> ASH
-            511 -> FREEZING_RAIN
-            in 502..504 -> HEAVY_RAIN
-            602 -> HEAVY_SNOW
-            in 200..232 -> THUNDERSTORM
-            in 300..321 -> DRIZZLE
-            in 500..531 -> RAIN
-            in 600..622 -> SNOW
-            711 -> SMOKE
-            741 -> FOG
-            in 731..761 -> DUST
-            721 -> HAZE
-            701 -> MIST
-            in 803..804 -> CLOUDY
-            in 801..802 -> FEW_CLOUDS
-            800 -> CLEAR
-            else -> UNKNOWN
+    companion object {
+        fun getWeatherCondition(id: Int): WeatherCondition {
+            return when (id) {
+                781 -> TORNADO
+                771 -> SQUALL
+                762 -> ASH
+                511 -> FREEZING_RAIN
+                in 502..504 -> HEAVY_RAIN
+                602 -> HEAVY_SNOW
+                in 200..232 -> THUNDERSTORM
+                in 300..321 -> DRIZZLE
+                in 500..531 -> RAIN
+                in 600..622 -> SNOW
+                711 -> SMOKE
+                741 -> FOG
+                in 731..761 -> DUST
+                721 -> HAZE
+                701 -> MIST
+                in 803..804 -> CLOUDY
+                in 801..802 -> FEW_CLOUDS
+                800 -> CLEAR
+                else -> UNKNOWN
+            }
         }
     }
 

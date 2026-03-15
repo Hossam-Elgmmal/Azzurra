@@ -22,7 +22,6 @@ interface RemoteWeatherDataSource {
     suspend fun getDailyForecast(
         latitude: Double,
         longitude: Double,
-        language: String,
         apiKey: String = BuildConfig.WEATHER_API_KEY,
         units: String = "metric",
         count: Int = Constants.DAILY_FORECAST_ITEM_COUNT,

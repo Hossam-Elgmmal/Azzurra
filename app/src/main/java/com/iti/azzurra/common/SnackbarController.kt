@@ -23,6 +23,6 @@ data class SnackbarEvent(
 )
 
 data class SnackbarAction(
-    val nameId: String,
+    val nameId: Int,
     val action: suspend () -> Unit
 )

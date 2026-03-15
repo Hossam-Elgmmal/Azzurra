@@ -19,16 +19,14 @@ interface FavoriteDao {
 
     @Query("SELECT * FROM favorite_daily_forecast " +
             "WHERE locationId = :locationId " +
-            "AND languageCode = :languageCode " +
             "AND dayTimestamp >= :todayMillis"
     )
     suspend fun getFavoriteByLocationIdAndLanguageCode(
         locationId: String,
-        languageCode: String,
         todayMillis: Long
     ): List<FavoriteDailyForecastEntity>
 
-    @Query("DELETE FROM favorite_daily_forecast WHERE locationId = :locationId")
+    @Query("DELETE FROM favorite_locations WHERE locationId = :locationId")
     suspend fun deleteFavoriteLocation(locationId: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

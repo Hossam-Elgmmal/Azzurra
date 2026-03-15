@@ -6,7 +6,6 @@ import com.iti.azzurra.data.weather.remote.models.daily.DailyItemDto
 
 fun DailyForecastResponseDto.toFavoriteDailyForecastEntities(
     locationId: String,
-    languageCode: String,
 ): List<FavoriteDailyForecastEntity> {
 
     val city = this.city
@@ -24,7 +23,6 @@ fun DailyForecastResponseDto.toFavoriteDailyForecastEntities(
                 locationId = locationId,
                 cityName = cityName,
                 countryCode = countryCode,
-                languageCode = languageCode,
                 latitude = latitude,
                 longitude = longitude,
                 timezoneOffset = timezoneOffset
@@ -36,7 +34,6 @@ private fun DailyItemDto.toEntity(
     locationId: String,
     cityName: String,
     countryCode: String,
-    languageCode: String,
     latitude: Double,
     longitude: Double,
     timezoneOffset: Int
@@ -49,7 +46,6 @@ private fun DailyItemDto.toEntity(
         dayTimestamp = (this.timestamp ?: 0L).toStartOfDayTimestamp(),
         cityName = cityName,
         countryCode = countryCode,
-        languageCode = languageCode,
         latitude = latitude,
         longitude = longitude,
         timezoneOffset = timezoneOffset,
@@ -83,6 +79,6 @@ private fun DailyItemDto.toEntity(
         conditionId = condition?.conditionId ?: 0,
         conditionGroup = condition?.conditionGroup ?: "",
         conditionDescription = condition?.conditionDescription ?: "",
-        iconCode = condition?.iconCode ?: ""
+        iconCode = condition?.iconCode ?: "03d"
     )
 }

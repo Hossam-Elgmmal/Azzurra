@@ -29,6 +29,8 @@ playServicesLocation = "21.3.0"
 mapsCompose = "8.2.1"
 playServicesMaps = "20.0.0"
 placesKtx = "5.0.0"
+lottieCompose = "6.7.1"
+kotlinxDatetime = "0.7.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,7 +55,7 @@ androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "d
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 #coil
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
-coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 #material3 expressive
 androidx-material3-android = { module = "androidx.compose.material3:material3-android", version.ref = "material3Android" }
 #core-splashscreen
@@ -91,6 +93,10 @@ play-services-location = { module = "com.google.android.gms:play-services-locati
 maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 places-ktx = { module = "com.google.maps.android:places-ktx", version.ref = "placesKtx" }
+#lottie
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
+#kotlinx datetime
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

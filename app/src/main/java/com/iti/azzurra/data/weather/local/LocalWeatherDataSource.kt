@@ -24,11 +24,10 @@ interface LocalWeatherDataSource {
 
     suspend fun insertAirPollution(entities: List<AirPollutionEntity>)
 
-    fun getAllFavoriteLocations(): Flow<List<FavoriteLocationEntity>>
+    fun getFavoriteLocations(): Flow<List<FavoriteLocationEntity>>
 
     suspend fun getFavoriteByLocationIdAndLanguageCode(
         locationId: String,
-        languageCode: String,
         todayMillis: Long
     ): List<FavoriteDailyForecastEntity>
 

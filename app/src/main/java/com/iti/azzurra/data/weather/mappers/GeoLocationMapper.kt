@@ -21,7 +21,8 @@ fun ReverseGeocodingResponseDto.toEntity(latitude: Double, longitude: Double): G
 fun GeoLocationEntity.toFavoriteLocation(): FavoriteLocationEntity {
     return FavoriteLocationEntity(
         locationId = locationId,
-        cityName = nameEn,
+        cityNameEn = nameEn,
+        cityNameAr = localizedNames["ar"] ?: nameEn,
         countryCode = country,
         latitude = latitude,
         longitude = longitude,

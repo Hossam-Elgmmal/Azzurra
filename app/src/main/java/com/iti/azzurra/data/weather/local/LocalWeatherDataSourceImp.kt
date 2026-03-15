@@ -43,16 +43,15 @@ class LocalWeatherDataSourceImp @Inject constructor(
         entities: List<AirPollutionEntity>
     ) = locationDao.insertAirPollution(entities)
 
-    override fun getAllFavoriteLocations() =
+    override fun getFavoriteLocations() =
         favoriteDao.getAllFavoriteLocations()
 
     override suspend fun getFavoriteByLocationIdAndLanguageCode(
         locationId: String,
-        languageCode: String,
         todayMillis: Long
     ): List<FavoriteDailyForecastEntity> {
         return favoriteDao.getFavoriteByLocationIdAndLanguageCode(
-            locationId, languageCode, todayMillis
+            locationId, todayMillis
         )
     }
 

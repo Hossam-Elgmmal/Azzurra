@@ -54,4 +54,176 @@
     <string name="city_added_to_favorites">City added to favorites</string>
     <string name="unable_to_add_city_to_favorites">Unable to add city to favorites</string>
     <string name="unable_to_set_as_current_location">Unable to set as current location</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
+    <string name="undo">Undo</string>
+
+    <string name="unit_celsius">°C</string>
+    <string name="unit_fahrenheit">°F</string>
+    <string name="unit_kelvin">K</string>
+    <string name="unit_m_per_s">m/s</string>
+    <string name="unit_km_per_h">km/h</string>
+    <string name="unit_mph">mph</string>
+
+    <!-- %1$d is the numeric value -->
+    <string name="unit_pressure">%1$d hPa</string>
+    <string name="unit_percentage">%1$d%%</string>
+    <string name="unit_millimeters">%1$.1f mm</string>
+
+    <!-- Wind: %1$s = compass, %2$d = degrees  e.g. "NW (315°)" -->
+    <string name="wind_direction_format">%1$s (%2$d°)</string>
+    <string-array name="wind_directions">
+        <item>N</item>
+        <item>NNE</item>
+        <item>NE</item>
+        <item>ENE</item>
+        <item>E</item>
+        <item>ESE</item>
+        <item>SE</item>
+        <item>SSE</item>
+        <item>S</item>
+        <item>SSW</item>
+        <item>SW</item>
+        <item>WSW</item>
+        <item>W</item>
+        <item>WNW</item>
+        <item>NW</item>
+        <item>NNW</item>
+    </string-array>
+
+    <string name="label_none">—</string>
+    <string name="condition_200_title">Thunderstorm</string>
+    <string name="condition_200_desc">Thunderstorm with light rain</string>
+    <string name="condition_201_title">Thunderstorm</string>
+    <string name="condition_201_desc">Thunderstorm with rain</string>
+    <string name="condition_202_title">Thunderstorm</string>
+    <string name="condition_202_desc">Thunderstorm with heavy rain</string>
+    <string name="condition_210_title">Light Thunderstorm</string>
+    <string name="condition_210_desc">Light thunderstorm</string>
+    <string name="condition_211_title">Thunderstorm</string>
+    <string name="condition_211_desc">Thunderstorm</string>
+    <string name="condition_212_title">Heavy Thunderstorm</string>
+    <string name="condition_212_desc">Heavy thunderstorm</string>
+    <string name="condition_221_title">Ragged Thunderstorm</string>
+    <string name="condition_221_desc">Ragged thunderstorm</string>
+    <string name="condition_230_title">Thunderstorm</string>
+    <string name="condition_230_desc">Thunderstorm with light drizzle</string>
+    <string name="condition_231_title">Thunderstorm</string>
+    <string name="condition_231_desc">Thunderstorm with drizzle</string>
+    <string name="condition_232_title">Thunderstorm</string>
+    <string name="condition_232_desc">Thunderstorm with heavy drizzle</string>
+    <string name="condition_300_title">Drizzle</string>
+    <string name="condition_300_desc">Light intensity drizzle</string>
+    <string name="condition_301_title">Drizzle</string>
+    <string name="condition_301_desc">Drizzle</string>
+    <string name="condition_302_title">Heavy Drizzle</string>
+    <string name="condition_302_desc">Heavy intensity drizzle</string>
+    <string name="condition_310_title">Drizzle Rain</string>
+    <string name="condition_310_desc">Light intensity drizzle rain</string>
+    <string name="condition_311_title">Drizzle Rain</string>
+    <string name="condition_311_desc">Drizzle rain</string>
+    <string name="condition_312_title">Heavy Drizzle Rain</string>
+    <string name="condition_312_desc">Heavy intensity drizzle rain</string>
+    <string name="condition_313_title">Shower Drizzle</string>
+    <string name="condition_313_desc">Shower rain and drizzle</string>
+    <string name="condition_314_title">Heavy Shower Drizzle</string>
+    <string name="condition_314_desc">Heavy shower rain and drizzle</string>
+    <string name="condition_321_title">Shower Drizzle</string>
+    <string name="condition_321_desc">Shower drizzle</string>
+    <string name="condition_500_title">Light Rain</string>
+    <string name="condition_500_desc">Light rain</string>
+    <string name="condition_501_title">Moderate Rain</string>
+    <string name="condition_501_desc">Moderate rain</string>
+    <string name="condition_502_title">Heavy Rain</string>
+    <string name="condition_502_desc">Heavy intensity rain</string>
+    <string name="condition_503_title">Very Heavy Rain</string>
+    <string name="condition_503_desc">Very heavy rain</string>
+    <string name="condition_504_title">Extreme Rain</string>
+    <string name="condition_504_desc">Extreme rain</string>
+    <string name="condition_511_title">Freezing Rain</string>
+    <string name="condition_511_desc">Freezing rain</string>
+    <string name="condition_520_title">Light Shower Rain</string>
+    <string name="condition_520_desc">Light intensity shower rain</string>
+    <string name="condition_521_title">Shower Rain</string>
+    <string name="condition_521_desc">Shower rain</string>
+    <string name="condition_522_title">Heavy Shower Rain</string>
+    <string name="condition_522_desc">Heavy intensity shower rain</string>
+    <string name="condition_531_title">Ragged Shower Rain</string>
+    <string name="condition_531_desc">Ragged shower rain</string>
+    <string name="condition_600_title">Light Snow</string>
+    <string name="condition_600_desc">Light snow</string>
+    <string name="condition_601_title">Snow</string>
+    <string name="condition_601_desc">Snow</string>
+    <string name="condition_602_title">Heavy Snow</string>
+    <string name="condition_602_desc">Heavy snow</string>
+    <string name="condition_611_title">Sleet</string>
+    <string name="condition_611_desc">Sleet</string>
+    <string name="condition_612_title">Light Shower Sleet</string>
+    <string name="condition_612_desc">Light shower sleet</string>
+    <string name="condition_613_title">Shower Sleet</string>
+    <string name="condition_613_desc">Shower sleet</string>
+    <string name="condition_615_title">Light Rain and Snow</string>
+    <string name="condition_615_desc">Light rain and snow</string>
+    <string name="condition_616_title">Rain and Snow</string>
+    <string name="condition_616_desc">Rain and snow</string>
+    <string name="condition_620_title">Light Shower Snow</string>
+    <string name="condition_620_desc">Light shower snow</string>
+    <string name="condition_621_title">Shower Snow</string>
+    <string name="condition_621_desc">Shower snow</string>
+    <string name="condition_622_title">Heavy Shower Snow</string>
+    <string name="condition_622_desc">Heavy shower snow</string>
+    <string name="condition_701_title">Mist</string>
+    <string name="condition_701_desc">Mist</string>
+    <string name="condition_711_title">Smoke</string>
+    <string name="condition_711_desc">Smoke</string>
+    <string name="condition_721_title">Haze</string>
+    <string name="condition_721_desc">Haze</string>
+    <string name="condition_731_title">Dust Whirls</string>
+    <string name="condition_731_desc">Sand or dust whirls</string>
+    <string name="condition_741_title">Fog</string>
+    <string name="condition_741_desc">Fog</string>
+    <string name="condition_751_title">Sand</string>
+    <string name="condition_751_desc">Sand</string>
+    <string name="condition_761_title">Dust</string>
+    <string name="condition_761_desc">Dust</string>
+    <string name="condition_762_title">Volcanic Ash</string>
+    <string name="condition_762_desc">Volcanic ash</string>
+    <string name="condition_771_title">Squalls</string>
+    <string name="condition_771_desc">Squalls</string>
+    <string name="condition_781_title">Tornado</string>
+    <string name="condition_781_desc">Tornado</string>
+    <string name="condition_800_title">Clear Sky</string>
+    <string name="condition_800_desc">Clear sky</string>
+    <string name="condition_801_title">Few Clouds</string>
+    <string name="condition_801_desc">Few clouds: 11–25%</string>
+    <string name="condition_802_title">Scattered Clouds</string>
+    <string name="condition_802_desc">Scattered clouds: 25–50%</string>
+    <string name="condition_803_title">Broken Clouds</string>
+    <string name="condition_803_desc">Broken clouds: 51–84%</string>
+    <string name="condition_804_title">Overcast Clouds</string>
+    <string name="condition_804_desc">Overcast clouds: 85–100%</string>
+    <string name="condition_unknown_title">Unknown</string>
+    <string name="condition_unknown_desc">Weather condition unavailable</string>
+    <string name="temperature">Temperature</string>
+    <string name="morning">Morning</string>
+    <string name="day">Day</string>
+    <string name="evening">Evening</string>
+    <string name="night">Night</string>
+    <string name="sun">Sun</string>
+    <string name="rise">Rise</string>
+    <string name="set">Set</string>
+    <string name="atmosphere">Atmosphere</string>
+    <string name="pressure">Pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="clouds">Clouds</string>
+    <string name="wind">Wind</string>
+    <string name="speed">Speed</string>
+    <string name="gust">Gust</string>
+    <string name="direction">Direction</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="chance">Chance</string>
+    <string name="rain">Rain</string>
+    <string name="snow">Snow</string>
+    <string name="feels">Feels %1$s</string>
+    <string name="day_forecast">%1$d-day forecast</string>
+
 </resources>

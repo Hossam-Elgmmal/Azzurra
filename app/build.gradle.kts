@@ -149,4 +149,10 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.places.ktx)
     implementation(libs.maps.compose)
+
+    //lottie
+    implementation(libs.lottie.compose)
+
+    //kotlinx-datetime
+    implementation(libs.kotlinx.datetime)
 }

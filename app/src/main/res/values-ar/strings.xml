@@ -55,4 +55,176 @@
     <string name="city_added_to_favorites">تمت إضافة المدينة إلى المفضلة</string>
     <string name="unable_to_add_city_to_favorites">تعذر إضافة المدينة إلى المفضلة</string>
     <string name="unable_to_set_as_current_location">تعذر تعيين الموقع كموقع حالي</string>
+    <string name="removed_from_favorites">تمت الإزالة من المفضلة</string>
+    <string name="undo">تراجع</string>
+
+    <string name="unit_celsius">°م</string>
+    <string name="unit_fahrenheit">°ف</string>
+    <string name="unit_kelvin">ك</string>
+    <string name="unit_m_per_s">م/ث</string>
+    <string name="unit_km_per_h">كم/س</string>
+    <string name="unit_mph">ميل/س</string>
+
+    <!-- %1$d is the numeric value -->
+    <string name="unit_pressure">%1$d hPa</string>
+    <string name="unit_percentage">%1$d%%</string>
+    <string name="unit_millimeters">%1$.1f مم</string>
+
+    <!-- Wind: %1$s = compass, %2$d = degrees -->
+    <string name="wind_direction_format">%1$s (%2$d°)</string>
+
+    <string-array name="wind_directions">
+        <item>ش</item>
+        <item>ش ش ق</item>
+        <item>ش ق</item>
+        <item>ق ش ق</item>
+        <item>ق</item>
+        <item>ق ج ق</item>
+        <item>ج ق</item>
+        <item>ج ج ق</item>
+        <item>ج</item>
+        <item>ج ج غ</item>
+        <item>ج غ</item>
+        <item>غ ج غ</item>
+        <item>غ</item>
+        <item>غ ش غ</item>
+        <item>ش غ</item>
+        <item>ش ش غ</item>
+    </string-array>
+
+    <string name="label_none">—</string>
+    <string name="condition_200_title">عاصفة رعدية</string>
+    <string name="condition_200_desc">عاصفة رعدية مع أمطار خفيفة</string>
+    <string name="condition_201_title">عاصفة رعدية</string>
+    <string name="condition_201_desc">عاصفة رعدية مع أمطار</string>
+    <string name="condition_202_title">عاصفة رعدية</string>
+    <string name="condition_202_desc">عاصفة رعدية مع أمطار غزيرة</string>
+    <string name="condition_210_title">عاصفة رعدية خفيفة</string>
+    <string name="condition_210_desc">عاصفة رعدية خفيفة</string>
+    <string name="condition_211_title">عاصفة رعدية</string>
+    <string name="condition_211_desc">عاصفة رعدية</string>
+    <string name="condition_212_title">عاصفة رعدية شديدة</string>
+    <string name="condition_212_desc">عاصفة رعدية شديدة</string>
+    <string name="condition_221_title">عاصفة رعدية غير منتظمة</string>
+    <string name="condition_221_desc">عاصفة رعدية غير منتظمة</string>
+    <string name="condition_230_title">عاصفة رعدية</string>
+    <string name="condition_230_desc">عاصفة رعدية مع رذاذ خفيف</string>
+    <string name="condition_231_title">عاصفة رعدية</string>
+    <string name="condition_231_desc">عاصفة رعدية مع رذاذ</string>
+    <string name="condition_232_title">عاصفة رعدية</string>
+    <string name="condition_232_desc">عاصفة رعدية مع رذاذ غزير</string>
+    <string name="condition_300_title">رذاذ</string>
+    <string name="condition_300_desc">رذاذ خفيف</string>
+    <string name="condition_301_title">رذاذ</string>
+    <string name="condition_301_desc">رذاذ</string>
+    <string name="condition_302_title">رذاذ غزير</string>
+    <string name="condition_302_desc">رذاذ شديد</string>
+    <string name="condition_310_title">أمطار رذاذية</string>
+    <string name="condition_310_desc">أمطار رذاذية خفيفة</string>
+    <string name="condition_311_title">أمطار رذاذية</string>
+    <string name="condition_311_desc">أمطار رذاذية</string>
+    <string name="condition_312_title">أمطار رذاذية غزيرة</string>
+    <string name="condition_312_desc">أمطار رذاذية شديدة</string>
+    <string name="condition_313_title">زخات رذاذ</string>
+    <string name="condition_313_desc">زخات مطر مع رذاذ</string>
+    <string name="condition_314_title">زخات رذاذ غزيرة</string>
+    <string name="condition_314_desc">زخات مطر غزيرة مع رذاذ</string>
+    <string name="condition_321_title">زخات رذاذ</string>
+    <string name="condition_321_desc">زخات رذاذ</string>
+    <string name="condition_500_title">مطر خفيف</string>
+    <string name="condition_500_desc">مطر خفيف</string>
+    <string name="condition_501_title">مطر متوسط</string>
+    <string name="condition_501_desc">مطر متوسط</string>
+    <string name="condition_502_title">مطر غزير</string>
+    <string name="condition_502_desc">مطر غزير</string>
+    <string name="condition_503_title">مطر شديد</string>
+    <string name="condition_503_desc">مطر شديد جدًا</string>
+    <string name="condition_504_title">مطر غزير جدًا</string>
+    <string name="condition_504_desc">مطر غزير للغاية</string>
+    <string name="condition_511_title">مطر متجمد</string>
+    <string name="condition_511_desc">مطر متجمد</string>
+    <string name="condition_520_title">زخات مطر خفيفة</string>
+    <string name="condition_520_desc">زخات مطر خفيفة</string>
+    <string name="condition_521_title">زخات مطر</string>
+    <string name="condition_521_desc">زخات مطر</string>
+    <string name="condition_522_title">زخات مطر غزيرة</string>
+    <string name="condition_522_desc">زخات مطر شديدة</string>
+    <string name="condition_531_title">زخات مطر غير منتظمة</string>
+    <string name="condition_531_desc">زخات مطر غير منتظمة</string>
+    <string name="condition_600_title">ثلوج خفيفة</string>
+    <string name="condition_600_desc">تساقط ثلوج خفيف</string>
+    <string name="condition_601_title">ثلوج</string>
+    <string name="condition_601_desc">تساقط ثلوج</string>
+    <string name="condition_602_title">ثلوج كثيفة</string>
+    <string name="condition_602_desc">تساقط ثلوج كثيف</string>
+    <string name="condition_611_title">مطر ثلجي</string>
+    <string name="condition_611_desc">مطر ممزوج بالثلج</string>
+    <string name="condition_612_title">زخات مطر ثلجي خفيفة</string>
+    <string name="condition_612_desc">زخات خفيفة من المطر الثلجي</string>
+    <string name="condition_613_title">زخات مطر ثلجي</string>
+    <string name="condition_613_desc">زخات من المطر الثلجي</string>
+    <string name="condition_615_title">مطر وثلج خفيف</string>
+    <string name="condition_615_desc">مطر خفيف مع ثلوج</string>
+    <string name="condition_616_title">مطر وثلج</string>
+    <string name="condition_616_desc">مطر مع ثلوج</string>
+    <string name="condition_620_title">زخات ثلوج خفيفة</string>
+    <string name="condition_620_desc">زخات ثلوج خفيفة</string>
+    <string name="condition_621_title">زخات ثلوج</string>
+    <string name="condition_621_desc">زخات ثلوج</string>
+    <string name="condition_622_title">زخات ثلوج كثيفة</string>
+    <string name="condition_622_desc">زخات ثلوج كثيفة</string>
+    <string name="condition_701_title">ضباب خفيف</string>
+    <string name="condition_701_desc">ضباب خفيف</string>
+    <string name="condition_711_title">دخان</string>
+    <string name="condition_711_desc">دخان</string>
+    <string name="condition_721_title">غشاوة</string>
+    <string name="condition_721_desc">غشاوة في الجو</string>
+    <string name="condition_731_title">دوامات غبار</string>
+    <string name="condition_731_desc">دوامات رمل أو غبار</string>
+    <string name="condition_741_title">ضباب كثيف</string>
+    <string name="condition_741_desc">ضباب كثيف</string>
+    <string name="condition_751_title">رمال</string>
+    <string name="condition_751_desc">رمال في الجو</string>
+    <string name="condition_761_title">غبار</string>
+    <string name="condition_761_desc">غبار</string>
+    <string name="condition_762_title">رماد بركاني</string>
+    <string name="condition_762_desc">رماد بركاني</string>
+    <string name="condition_771_title">رياح عاصفة</string>
+    <string name="condition_771_desc">رياح عاصفة</string>
+    <string name="condition_781_title">إعصار</string>
+    <string name="condition_781_desc">إعصار</string>
+    <string name="condition_800_title">سماء صافية</string>
+    <string name="condition_800_desc">سماء صافية</string>
+    <string name="condition_801_title">سحب قليلة</string>
+    <string name="condition_801_desc">سحب قليلة: 11–25%</string>
+    <string name="condition_802_title">سحب متفرقة</string>
+    <string name="condition_802_desc">سحب متفرقة: 25–50%</string>
+    <string name="condition_803_title">سحب متقطعة</string>
+    <string name="condition_803_desc">سحب متقطعة: 51–84%</string>
+    <string name="condition_804_title">سحب كثيفة</string>
+    <string name="condition_804_desc">سحب كثيفة: 85–100%</string>
+    <string name="condition_unknown_title">غير معروف</string>
+    <string name="condition_unknown_desc">حالة الطقس غير متوفرة</string>
+    <string name="temperature">درجة الحرارة</string>
+    <string name="morning">الصباح</string>
+    <string name="day">النهار</string>
+    <string name="evening">المساء</string>
+    <string name="night">الليل</string>
+    <string name="sun">الشمس</string>
+    <string name="rise">الشروق</string>
+    <string name="set">الغروب</string>
+    <string name="atmosphere">الغلاف الجوي</string>
+    <string name="pressure">الضغط</string>
+    <string name="humidity">الرطوبة</string>
+    <string name="clouds">السحب</string>
+    <string name="wind">الرياح</string>
+    <string name="speed">السرعة</string>
+    <string name="gust">هبات</string>
+    <string name="direction">الاتجاه</string>
+    <string name="precipitation">الهطول</string>
+    <string name="chance">احتمال</string>
+    <string name="rain">المطر</string>
+    <string name="snow">الثلج</string>
+    <string name="feels">كأنه %1$s</string>
+    <string name="day_forecast">توقعات %1$d أيام</string>
 </resources>

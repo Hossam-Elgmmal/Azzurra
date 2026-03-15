@@ -1,5 +1,6 @@
 package com.iti.azzurra.data.weather
 
+import android.content.Context
 import com.iti.azzurra.common.SnackbarController
 import com.iti.azzurra.common.SnackbarEvent
 import com.iti.azzurra.core.network.WeatherDataError
@@ -7,56 +8,66 @@ import com.iti.azzurra.core.network.WeatherResult
 import com.iti.azzurra.core.network.map
 import com.iti.azzurra.core.network.onFailure
 import com.iti.azzurra.core.network.toUserMessageId
+import com.iti.azzurra.core.scope.AzzurraDispatchers
+import com.iti.azzurra.core.scope.Dispatcher
+import com.iti.azzurra.data.settings.models.UserSettings
 import com.iti.azzurra.data.weather.local.LocalWeatherDataSource
-import com.iti.azzurra.data.weather.local.models.favorites.FavoriteDailyForecastEntity
+import com.iti.azzurra.data.weather.local.models.favorites.DailyForecast
+import com.iti.azzurra.data.weather.local.models.favorites.FavoriteLocationEntity
 import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
 import com.iti.azzurra.data.weather.mappers.makeLocationId
+import com.iti.azzurra.data.weather.mappers.toDailyForecast
 import com.iti.azzurra.data.weather.mappers.toEntity
 import com.iti.azzurra.data.weather.mappers.toFavoriteDailyForecastEntities
 import com.iti.azzurra.data.weather.mappers.toFavoriteLocation
 import com.iti.azzurra.data.weather.mappers.toStartOfDayTimestamp
 import com.iti.azzurra.data.weather.remote.RemoteWeatherDataSource
 import com.iti.azzurra.utils.Constants
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
 class WeatherRepoImp @Inject constructor(
     private val remoteSource: RemoteWeatherDataSource,
     private val localSource: LocalWeatherDataSource,
+    @param:ApplicationContext private val context: Context,
+    @param:Dispatcher(AzzurraDispatchers.DefaultDispatcher) private val defaultDispatcher: CoroutineDispatcher,
 ) : WeatherRepo {
 
     override suspend fun getFavoriteWeather(
         latitude: Double,
         longitude: Double,
-        languageCode: String,
-    ): WeatherResult<List<FavoriteDailyForecastEntity>, WeatherDataError> {
+        settings: UserSettings,
+    ): WeatherResult<List<DailyForecast>, WeatherDataError> {
 
         val todayMillis = System.currentTimeMillis().toStartOfDayTimestamp()
 
         val localFavorites = localSource.getFavoriteByLocationIdAndLanguageCode(
             makeLocationId(latitude, longitude),
-            languageCode,
             todayMillis
         ).takeIf { it.size >= Constants.DAILY_FORECAST_ITEM_COUNT }
 
         if (localFavorites != null) {
-            return WeatherResult.Success(localFavorites)
+            return withContext(defaultDispatcher) {
+                WeatherResult.Success(localFavorites.map { it.toDailyForecast(context, settings) })
+            }
         }
 
         return remoteSource.getDailyForecast(
             latitude = latitude,
-            longitude = longitude,
-            language = languageCode
-        ).map {
-            val allDays = it.toFavoriteDailyForecastEntities(
+            longitude = longitude
+        ).map { responseDto ->
+            val allDays = responseDto.toFavoriteDailyForecastEntities(
                 makeLocationId(latitude, longitude),
-                languageCode
             )
 
             localSource.insertFavoriteDailyForecast(allDays)
-
-            allDays
+            withContext(defaultDispatcher) {
+                allDays.map { it.toDailyForecast(context, settings) }
+            }
         }.onFailure {
             SnackbarController.sendEvent(
                 SnackbarEvent(
@@ -71,11 +82,32 @@ class WeatherRepoImp @Inject constructor(
         localSource.insertFavoriteLocation(favorite)
     }
 
+    override suspend fun addLocationToFavorites(favoriteLocationEntity: FavoriteLocationEntity) {
+        localSource.insertFavoriteLocation(favoriteLocationEntity)
+    }
+
+    override fun getFavoriteLocations(): Flow<List<FavoriteLocationEntity>> {
+        return localSource.getFavoriteLocations()
+    }
+
     override fun getCurrentLocalCity(
         latitude: Double,
         longitude: Double,
     ): Flow<GeoLocationEntity?> {
         return localSource.getGeoLocationByIdFlow(makeLocationId(latitude, longitude))
+    }
+
+    override suspend fun getGeoLocationOnce(
+        latitude: Double,
+        longitude: Double
+    ): GeoLocationEntity? {
+        return localSource.getGeoLocationByIdOnce(makeLocationId(latitude, longitude))
+    }
+
+    override suspend fun deleteFavoriteLocation(
+        location: FavoriteLocationEntity
+    ) {
+        localSource.deleteFavoriteLocation(location.locationId)
     }
 
     override suspend fun getReverseGeoCode(
