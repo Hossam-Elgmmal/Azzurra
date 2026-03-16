@@ -1,23 +1,14 @@
 package com.iti.azzurra.data.weather.local.models.current_location
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
 
 @Entity(
     tableName = "hourly_forecast",
-    primaryKeys = ["timestamp", "locationId"],
-    foreignKeys = [
-        ForeignKey(
-            entity = LocationEntity::class,
-            parentColumns = ["locationId"],
-            childColumns = ["locationId"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ],
+    primaryKeys = ["locationId", "timestamp"],
 )
 data class HourlyForecastEntity(
-    val timestamp: Long,
     val locationId: String,
+    val timestamp: Long,
     val temperature: Double,
     val feelsLikeTemperature: Double,
     val minimumTemperature: Double,
@@ -38,5 +29,6 @@ data class HourlyForecastEntity(
     val conditionGroup: String,
     val conditionDescription: String,
     val iconCode: String,
-    val timestampText: String
+    val timestampText: String,
+    val timezoneOffset: Int
 )

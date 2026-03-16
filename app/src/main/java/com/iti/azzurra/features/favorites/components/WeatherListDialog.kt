@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.iti.azzurra.R
-import com.iti.azzurra.data.weather.local.models.favorites.DailyForecast
+import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastUi
 import com.iti.azzurra.ui.theme.inverseOnSurfaceLight
 import com.iti.azzurra.ui.theme.inverseSurfaceLight
 
@@ -43,7 +43,7 @@ import com.iti.azzurra.ui.theme.inverseSurfaceLight
 fun WeatherListDialog(
     onGoBack: () -> Unit,
     cityName: String,
-    selectedWeatherList: List<DailyForecast>
+    selectedWeatherList: List<DailyForecastUi>
 ) {
     Dialog(
         onDismissRequest = onGoBack,
@@ -65,7 +65,7 @@ fun WeatherListDialog(
 @Composable
 fun DailyForecastScreen(
     cityName: String,
-    selectedWeatherList: List<DailyForecast>,
+    selectedWeatherList: List<DailyForecastUi>,
     onGoBack: () -> Unit,
 ) {
     val listState = rememberLazyListState()

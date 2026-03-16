@@ -3,9 +3,9 @@ package com.iti.azzurra.core.database
 import android.content.Context
 import androidx.room.Room
 import com.iti.azzurra.data.alert.local.daos.AlertDao
+import com.iti.azzurra.data.weather.local.daos.CurrentWeatherDao
 import com.iti.azzurra.data.weather.local.daos.FavoriteDao
 import com.iti.azzurra.data.weather.local.daos.GeoLocationDao
-import com.iti.azzurra.data.weather.local.daos.LocationDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,7 +32,7 @@ object DatabaseModule {
     @Singleton
     fun provideLocationDao(
         weatherDatabase: WeatherDatabase
-    ): LocationDao = weatherDatabase.locationDao()
+    ): CurrentWeatherDao = weatherDatabase.currentWeatherDao()
 
     @Provides
     @Singleton

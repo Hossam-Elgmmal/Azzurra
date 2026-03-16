@@ -16,11 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.iti.azzurra.data.weather.local.models.favorites.DailyForecast
+import com.iti.azzurra.common.WeatherConditionIcon
+import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastUi
 
 @Composable
 fun DailyForecastCard(
-    forecast: DailyForecast,
+    forecast: DailyForecastUi,
     modifier: Modifier = Modifier,
 ) {
     Box(

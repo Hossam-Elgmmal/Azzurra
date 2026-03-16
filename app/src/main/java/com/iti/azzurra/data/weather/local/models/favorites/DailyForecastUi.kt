@@ -1,6 +1,6 @@
 package com.iti.azzurra.data.weather.local.models.favorites
 
-data class DailyForecast(
+data class DailyForecastUi(
     val locationId: String,
     val iconCode: String,
     val dateText: String,

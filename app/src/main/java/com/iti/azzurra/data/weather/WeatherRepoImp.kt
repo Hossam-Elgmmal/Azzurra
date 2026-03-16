@@ -12,14 +12,23 @@ import com.iti.azzurra.core.scope.AzzurraDispatchers
 import com.iti.azzurra.core.scope.Dispatcher
 import com.iti.azzurra.data.settings.models.UserSettings
 import com.iti.azzurra.data.weather.local.LocalWeatherDataSource
-import com.iti.azzurra.data.weather.local.models.favorites.DailyForecast
+import com.iti.azzurra.data.weather.local.models.current_location.AirPollutionUi
+import com.iti.azzurra.data.weather.local.models.current_location.CurrentWeatherUi
+import com.iti.azzurra.data.weather.local.models.current_location.HourlyForecastUi
+import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastUi
 import com.iti.azzurra.data.weather.local.models.favorites.FavoriteLocationEntity
 import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
 import com.iti.azzurra.data.weather.mappers.makeLocationId
+import com.iti.azzurra.data.weather.mappers.toAirPollutionEntities
+import com.iti.azzurra.data.weather.mappers.toAirPollutionUiList
+import com.iti.azzurra.data.weather.mappers.toCurrentWeatherEntity
+import com.iti.azzurra.data.weather.mappers.toCurrentWeatherUi
 import com.iti.azzurra.data.weather.mappers.toDailyForecast
 import com.iti.azzurra.data.weather.mappers.toEntity
 import com.iti.azzurra.data.weather.mappers.toFavoriteDailyForecastEntities
 import com.iti.azzurra.data.weather.mappers.toFavoriteLocation
+import com.iti.azzurra.data.weather.mappers.toHourlyForecastEntities
+import com.iti.azzurra.data.weather.mappers.toHourlyForecastUiList
 import com.iti.azzurra.data.weather.mappers.toStartOfDayTimestamp
 import com.iti.azzurra.data.weather.remote.RemoteWeatherDataSource
 import com.iti.azzurra.utils.Constants
@@ -37,11 +46,77 @@ class WeatherRepoImp @Inject constructor(
     @param:Dispatcher(AzzurraDispatchers.DefaultDispatcher) private val defaultDispatcher: CoroutineDispatcher,
 ) : WeatherRepo {
 
+    override suspend fun getCurrentWeather(
+        latitude: Double,
+        longitude: Double,
+        settings: UserSettings,
+    ): WeatherResult<CurrentWeatherUi, WeatherDataError> {
+        return remoteSource.getCurrentWeather(
+            latitude = latitude,
+            longitude = longitude,
+        ).map { responseDto ->
+            withContext(defaultDispatcher) {
+                responseDto.toCurrentWeatherEntity(makeLocationId(latitude, longitude))
+                    .toCurrentWeatherUi(context, settings)
+            }
+        }.onFailure {
+            SnackbarController.sendEvent(
+                SnackbarEvent(
+                    messageId = it.toUserMessageId()
+                )
+            )
+        }
+    }
+
+    override suspend fun getHourlyWeather(
+        latitude: Double,
+        longitude: Double,
+        settings: UserSettings,
+    ): WeatherResult<List<HourlyForecastUi>, WeatherDataError> {
+        return remoteSource.getHourlyForecast(
+            latitude = latitude,
+            longitude = longitude,
+        ).map { responseDto ->
+            withContext(defaultDispatcher) {
+                responseDto.toHourlyForecastEntities(makeLocationId(latitude, longitude))
+                    .toHourlyForecastUiList(context, settings)
+            }
+        }.onFailure {
+            SnackbarController.sendEvent(
+                SnackbarEvent(
+                    messageId = it.toUserMessageId()
+                )
+            )
+        }
+    }
+
+    override suspend fun getAirPollutionForecast(
+        latitude: Double,
+        longitude: Double,
+        settings: UserSettings,
+    ): WeatherResult<List<AirPollutionUi>, WeatherDataError> {
+        return remoteSource.getAirPollutionForecast(
+            latitude = latitude,
+            longitude = longitude,
+        ).map {
+            withContext(defaultDispatcher) {
+                it.toAirPollutionEntities(makeLocationId(latitude, longitude))
+                    .toAirPollutionUiList(context)
+            }
+        }.onFailure {
+            SnackbarController.sendEvent(
+                SnackbarEvent(
+                    messageId = it.toUserMessageId()
+                )
+            )
+        }
+    }
+
     override suspend fun getFavoriteWeather(
         latitude: Double,
         longitude: Double,
         settings: UserSettings,
-    ): WeatherResult<List<DailyForecast>, WeatherDataError> {
+    ): WeatherResult<List<DailyForecastUi>, WeatherDataError> {
 
         val todayMillis = System.currentTimeMillis().toStartOfDayTimestamp()
 

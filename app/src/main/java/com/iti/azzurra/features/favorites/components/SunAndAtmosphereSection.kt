@@ -10,11 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.iti.azzurra.R
-import com.iti.azzurra.data.weather.local.models.favorites.DailyForecast
+import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastUi
 
 @Composable
 fun SunAndAtmosphereSection(
-    forecast: DailyForecast,
+    forecast: DailyForecastUi,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),

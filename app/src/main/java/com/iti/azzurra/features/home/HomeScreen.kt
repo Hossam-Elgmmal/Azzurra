@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -76,6 +78,33 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            item { //todo
+                Button(
+                    onClick = { onAction(HomeAction.FetchNewData) }
+                ) {
+                    Text(
+                        text = "Fetch new data"
+                    )
+                }
+            }
+            item {
+                Text(
+                    text = state.currentWeather.toString(), //todo
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+            items(state.hourlyForecast) {
+                Text(
+                    text = it.toString(), //todo
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+            items(state.airPollution) {
+                Text(
+                    text = it.toString(), //todo
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
             item {
                 Spacer(
                     modifier = Modifier.height(LocalBottomBarHeight.current)

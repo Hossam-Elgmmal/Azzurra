@@ -1,0 +1,25 @@
+package com.iti.azzurra.data.weather.local.models.current_location
+
+data class HourlyForecastUi(
+    val locationId: String,
+    val timeText: String,
+    val iconCode: String,
+    val conditionTitle: String,
+    val conditionDescription: String,
+    val temperatureText: String,
+    val feelsLikeText: String,
+    val minTempText: String,
+    val maxTempText: String,
+    val humidityText: String,
+    val pressureText: String,
+    val seaLevelPressureText: String,
+    val groundLevelPressureText: String,
+    val visibilityText: String,
+    val cloudCoverText: String,
+    val windSpeedText: String,
+    val windDirectionText: String,
+    val windGustText: String,
+    val precipitationChanceText: String,
+    val rainVolumeText: String,
+    val snowVolumeText: String,
+)

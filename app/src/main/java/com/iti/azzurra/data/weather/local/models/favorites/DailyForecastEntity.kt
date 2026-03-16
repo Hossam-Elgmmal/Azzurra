@@ -1,23 +1,16 @@
-package com.iti.azzurra.data.weather.local.models.current_location
+package com.iti.azzurra.data.weather.local.models.favorites
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
 
-@Entity(
-    tableName = "daily_forecast",
-    primaryKeys = ["timestamp", "locationId"],
-    foreignKeys = [
-        ForeignKey(
-            entity = LocationEntity::class,
-            parentColumns = ["locationId"],
-            childColumns = ["locationId"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ],
-)
+@Entity(tableName = "daily_forecast", primaryKeys = ["locationId", "dayTimestamp"])
 data class DailyForecastEntity(
-    val timestamp: Long,
     val locationId: String,
+    val dayTimestamp: Long,
+    val cityName: String,
+    val countryCode: String,
+    val latitude: Double,
+    val longitude: Double,
+    val timezoneOffset: Int,
     val sunriseTimestamp: Long,
     val sunsetTimestamp: Long,
     val morningTemperature: Double,

@@ -1,5 +1,8 @@
 package com.iti.azzurra.data.weather.remote.models.hourly
 
+import com.iti.azzurra.data.weather.remote.models.common.AtmosphereMainDto
+import com.iti.azzurra.data.weather.remote.models.common.CloudCoverageDto
+import com.iti.azzurra.data.weather.remote.models.common.WindDto
 import com.iti.azzurra.data.weather.remote.models.common.WeatherConditionDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,10 +10,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class HourlyItemDto(
     @SerialName("dt") val timestamp: Long? = null,
-    @SerialName("main") val temperatures: HourlyMainDto? = null,
+    @SerialName("main") val temperatures: AtmosphereMainDto? = null,
     @SerialName("weather") val weatherConditions: List<WeatherConditionDto>? = null,
-    @SerialName("clouds") val clouds: HourlyCloudsDto? = null,
-    @SerialName("wind") val wind: HourlyWindDto? = null,
+    @SerialName("clouds") val clouds: CloudCoverageDto? = null,
+    @SerialName("wind") val wind: WindDto? = null,
     @SerialName("rain") val rain: HourlyPrecipitationDto? = null,
     @SerialName("snow") val snow: HourlyPrecipitationDto? = null,
     @SerialName("visibility") val visibilityMeters: Int? = null,

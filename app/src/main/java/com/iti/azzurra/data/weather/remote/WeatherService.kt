@@ -1,6 +1,7 @@
 package com.iti.azzurra.data.weather.remote
 
 import com.iti.azzurra.BuildConfig
+import com.iti.azzurra.data.weather.remote.models.current.CurrentWeatherResponseDto
 import com.iti.azzurra.data.weather.remote.models.daily.DailyForecastResponseDto
 import com.iti.azzurra.data.weather.remote.models.geocoding.ReverseGeocodingResponseDto
 import com.iti.azzurra.data.weather.remote.models.hourly.HourlyForecastResponseDto
@@ -10,6 +11,15 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherService {
+
+    @GET("data/2.5/weather")
+    suspend fun getCurrentWeather(
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
+        @Query("lang") language: String = "en",
+        @Query("appid") apiKey: String = BuildConfig.WEATHER_API_KEY,
+        @Query("units") units: String = "metric"
+    ): Response<CurrentWeatherResponseDto>
 
     @GET("data/2.5/forecast/hourly")
     suspend fun getHourlyForecast(

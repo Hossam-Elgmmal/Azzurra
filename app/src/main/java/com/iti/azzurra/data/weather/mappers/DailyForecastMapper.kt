@@ -3,18 +3,18 @@ package com.iti.azzurra.data.weather.mappers
 import android.content.Context
 import com.iti.azzurra.R
 import com.iti.azzurra.data.settings.models.UserSettings
-import com.iti.azzurra.data.weather.local.models.favorites.DailyForecast
-import com.iti.azzurra.data.weather.local.models.favorites.FavoriteDailyForecastEntity
+import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastUi
+import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastEntity
 import kotlin.math.roundToInt
 
-fun FavoriteDailyForecastEntity.toDailyForecast(
+fun DailyForecastEntity.toDailyForecast(
     context: Context,
     settings: UserSettings,
-): DailyForecast {
+): DailyForecastUi {
 
     val timeZone = resolveTimeZone(timezoneOffset)
 
-    return DailyForecast(
+    return DailyForecastUi(
         locationId = locationId,
         iconCode = iconCode,
         dateText = formatDate(dayTimestamp, timeZone),

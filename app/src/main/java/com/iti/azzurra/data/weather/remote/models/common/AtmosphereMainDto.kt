@@ -1,10 +1,10 @@
-package com.iti.azzurra.data.weather.remote.models.hourly
+package com.iti.azzurra.data.weather.remote.models.common
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class HourlyMainDto(
+data class AtmosphereMainDto(
     @SerialName("temp") val temperature: Double? = null,
     @SerialName("feels_like") val feelsLikeTemperature: Double? = null,
     @SerialName("temp_min") val minimumTemperature: Double? = null,

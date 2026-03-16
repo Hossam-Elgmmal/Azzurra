@@ -3,6 +3,7 @@ package com.iti.azzurra.data.weather.remote
 import com.iti.azzurra.core.network.WeatherDataError
 import com.iti.azzurra.core.network.WeatherResult
 import com.iti.azzurra.core.network.safeApiCall
+import com.iti.azzurra.data.weather.remote.models.current.CurrentWeatherResponseDto
 import com.iti.azzurra.data.weather.remote.models.daily.DailyForecastResponseDto
 import com.iti.azzurra.data.weather.remote.models.geocoding.ReverseGeocodingResponseDto
 import com.iti.azzurra.data.weather.remote.models.hourly.HourlyForecastResponseDto
@@ -12,10 +13,25 @@ import javax.inject.Inject
 class RemoteWeatherDataSourceImp @Inject constructor(
     private val weatherService: WeatherService
 ): RemoteWeatherDataSource {
+
+    override suspend fun getCurrentWeather(
+        latitude: Double,
+        longitude: Double,
+        apiKey: String,
+        units: String
+    ): WeatherResult<CurrentWeatherResponseDto, WeatherDataError> {
+        return safeApiCall{
+            weatherService.getCurrentWeather(
+                latitude = latitude,
+                longitude = longitude,
+                apiKey = apiKey,
+                units = units,
+            )
+        }
+    }
     override suspend fun getHourlyForecast(
         latitude: Double,
         longitude: Double,
-        language: String,
         apiKey: String,
         units: String,
         count: Int
@@ -24,7 +40,6 @@ class RemoteWeatherDataSourceImp @Inject constructor(
             weatherService.getHourlyForecast(
                 latitude = latitude,
                 longitude = longitude,
-                language = language,
                 apiKey = apiKey,
                 units = units,
                 count = count

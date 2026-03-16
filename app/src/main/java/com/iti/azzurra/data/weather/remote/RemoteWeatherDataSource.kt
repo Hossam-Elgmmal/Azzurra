@@ -3,6 +3,7 @@ package com.iti.azzurra.data.weather.remote
 import com.iti.azzurra.BuildConfig
 import com.iti.azzurra.core.network.WeatherDataError
 import com.iti.azzurra.core.network.WeatherResult
+import com.iti.azzurra.data.weather.remote.models.current.CurrentWeatherResponseDto
 import com.iti.azzurra.data.weather.remote.models.daily.DailyForecastResponseDto
 import com.iti.azzurra.data.weather.remote.models.geocoding.ReverseGeocodingResponseDto
 import com.iti.azzurra.data.weather.remote.models.hourly.HourlyForecastResponseDto
@@ -10,10 +11,17 @@ import com.iti.azzurra.data.weather.remote.models.pollution.AirPollutionForecast
 import com.iti.azzurra.utils.Constants
 
 interface RemoteWeatherDataSource {
+
+    suspend fun getCurrentWeather(
+        latitude: Double,
+        longitude: Double,
+        apiKey: String = BuildConfig.WEATHER_API_KEY,
+        units: String = "metric",
+    ): WeatherResult<CurrentWeatherResponseDto, WeatherDataError>
+
     suspend fun getHourlyForecast(
         latitude: Double,
         longitude: Double,
-        language: String,
         apiKey: String = BuildConfig.WEATHER_API_KEY,
         units: String = "metric",
         count: Int = 96   // 96h = 4 full days

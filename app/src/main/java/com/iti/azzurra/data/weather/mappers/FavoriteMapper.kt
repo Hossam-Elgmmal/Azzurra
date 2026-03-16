@@ -1,12 +1,12 @@
 package com.iti.azzurra.data.weather.mappers
 
-import com.iti.azzurra.data.weather.local.models.favorites.FavoriteDailyForecastEntity
+import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastEntity
 import com.iti.azzurra.data.weather.remote.models.daily.DailyForecastResponseDto
 import com.iti.azzurra.data.weather.remote.models.daily.DailyItemDto
 
 fun DailyForecastResponseDto.toFavoriteDailyForecastEntities(
     locationId: String,
-): List<FavoriteDailyForecastEntity> {
+): List<DailyForecastEntity> {
 
     val city = this.city
     val cityName = city?.cityName ?: ""
@@ -37,11 +37,11 @@ private fun DailyItemDto.toEntity(
     latitude: Double,
     longitude: Double,
     timezoneOffset: Int
-): FavoriteDailyForecastEntity {
+): DailyForecastEntity {
 
     val condition = this.weatherConditions?.firstOrNull()
 
-    return FavoriteDailyForecastEntity(
+    return DailyForecastEntity(
         locationId = locationId,
         dayTimestamp = (this.timestamp ?: 0L).toStartOfDayTimestamp(),
         cityName = cityName,
