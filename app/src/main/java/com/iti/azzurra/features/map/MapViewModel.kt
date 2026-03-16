@@ -104,7 +104,7 @@ class MapViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    private suspend fun searchForPredictions(query: String) {
+    suspend fun searchForPredictions(query: String) {
         setIsLoading(true)
         placesRepo.searchPlaces(query)
             .onSuccess { newPredictions ->
@@ -138,7 +138,7 @@ class MapViewModel @Inject constructor(
         }
     }
 
-    private fun setSelectedGeoLocationAsCurrentLocation() {
+    fun setSelectedGeoLocationAsCurrentLocation() {
         viewModelScope.launch {
             _state.value.geoLocation?.let { geoLocation ->
                 settingsRepo.updateUserSettings {
@@ -155,7 +155,7 @@ class MapViewModel @Inject constructor(
         }
     }
 
-    private fun updateSearchBarAndSearchForCity(newTextFieldValue: TextFieldValue) {
+    fun updateSearchBarAndSearchForCity(newTextFieldValue: TextFieldValue) {
         _state.update {
             it.copy(
                 searchTextFieldValue = newTextFieldValue
@@ -209,7 +209,7 @@ class MapViewModel @Inject constructor(
         )
     }
 
-    private fun getPlaceDetails(place: PlacePrediction) {
+    fun getPlaceDetails(place: PlacePrediction) {
         viewModelScope.launch {
             setIsLoading(true)
             placesRepo.getPlaceDetails(place.placeId)

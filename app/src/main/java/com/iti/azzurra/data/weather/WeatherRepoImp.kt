@@ -47,7 +47,7 @@ class WeatherRepoImp @Inject constructor(
 ) : WeatherRepo {
 
     override suspend fun currentWeatherOnce(settings: UserSettings): CurrentWeatherUi? {
-        return localSource.getCurrentWeatherFlow(
+        return localSource.getCurrentWeatherOnce(
             makeLocationId(
                 settings.savedLatitude,
                 settings.savedLongitude
@@ -56,7 +56,7 @@ class WeatherRepoImp @Inject constructor(
     }
 
     override suspend fun hourlyWeatherOnce(settings: UserSettings): List<HourlyForecastUi> {
-        return localSource.getHourlyWeatherFlow(
+        return localSource.getHourlyWeatherOnce(
             makeLocationId(
                 settings.savedLatitude,
                 settings.savedLongitude
@@ -65,7 +65,7 @@ class WeatherRepoImp @Inject constructor(
     }
 
     override suspend fun airPollutionOnce(settings: UserSettings): List<AirPollutionUi> {
-        return localSource.getAirPollutionFlow(
+        return localSource.getAirPollutionOnce(
             makeLocationId(
                 settings.savedLatitude,
                 settings.savedLongitude

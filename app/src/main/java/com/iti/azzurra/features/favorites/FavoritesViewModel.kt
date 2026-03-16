@@ -67,7 +67,7 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    private fun toggleSelectedLocation(
+    fun toggleSelectedLocation(
         location: FavoriteLocationEntity?
     ) {
         if (location == null) {
@@ -86,7 +86,7 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    private fun deleteLocationFromFavorites(location: FavoriteLocationEntity) {
+    fun deleteLocationFromFavorites(location: FavoriteLocationEntity) {
         viewModelScope.launch {
             weatherRepo.deleteFavoriteLocation(location)
             SnackbarController.sendEvent(
@@ -103,7 +103,7 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    private fun getWeatherForLocation(lat: Double, lon: Double) {
+    fun getWeatherForLocation(lat: Double, lon: Double) {
         viewModelScope.launch {
             setIsLoading(true)
             val settings = state.value.settings
