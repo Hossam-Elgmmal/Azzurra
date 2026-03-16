@@ -10,6 +10,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalWeatherDataSource {
 
+    suspend fun getCurrentWeatherFlow(locationId: String): CurrentWeatherEntity?
+    suspend fun getHourlyWeatherFlow(locationId: String): List<HourlyForecastEntity>
+    suspend fun getAirPollutionFlow(locationId: String): List<AirPollutionEntity>
+
     suspend fun insertCurrentWeather(entity: CurrentWeatherEntity)
 
     suspend fun insertHourlyForecast(entities: List<HourlyForecastEntity>)

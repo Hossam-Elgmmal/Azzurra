@@ -9,8 +9,8 @@ data class UserSettings(
     val locationSource: LocationSource = LocationSource.MAP,
     val temperatureUnit: TemperatureUnit = TemperatureUnit.CELSIUS,
     val windSpeedUnit: WindSpeedUnit = WindSpeedUnit.METER_PER_SEC,
-    val savedLatitude: Double = 0.0,
-    val savedLongitude: Double = 0.0,
+    val savedLatitude: Double = 30.04,
+    val savedLongitude: Double = 31.23,
     val weatherCondition: WeatherCondition = WeatherCondition.UNKNOWN,
-    val city: String = "",
+    val city: String = "Cairo",
 )

@@ -193,7 +193,7 @@
     <string name="condition_771_desc">رياح عاصفة</string>
     <string name="condition_781_title">إعصار</string>
     <string name="condition_781_desc">إعصار</string>
-    <string name="condition_800_title">صحو</string>
+    <string name="condition_800_title">صافي</string>
     <string name="condition_800_desc">سماء صافية</string>
     <string name="condition_801_title">غيوم</string>
     <string name="condition_801_desc">سحب قليلة</string>
@@ -227,10 +227,24 @@
     <string name="snow">الثلج</string>
     <string name="feels">كأنه %1$s</string>
     <string name="day_forecast">توقعات %1$d أيام</string>
-    <string name="unit_micrograms_per_cubic_meter">%1$s ميكروغرام/م³</string>
+    <string name="unit_micrograms_per_cubic_meter">%1$s µg/m³</string>
     <string name="aqi_level_good">جيد</string>
     <string name="aqi_level_fair">مقبول</string>
     <string name="aqi_level_moderate">متوسط</string>
     <string name="aqi_level_poor">سيئ</string>
     <string name="aqi_level_very_poor">سيئ جدًا</string>
+    <string name="unit_kilometer">%1$s كم</string>
+    <string name="visibility">مدى الرؤية</string>
+    <string name="feels_like">يبدو كأنه %1$s</string>
+    <string name="max">العظمى %1$s</string>
+    <string name="min">الصغرى %1$s</string>
+    <string name="co">CO</string>
+    <string name="no">NO</string>
+    <string name="no2">NO₂</string>
+    <string name="so">SO₂</string>
+    <string name="o">O₃</string>
+    <string name="pm2_5">PM2.5</string>
+    <string name="pm10">PM10</string>
+    <string name="nh">NH₃</string>
+    <string name="air_quality">جودة الهواء</string>
 </resources>

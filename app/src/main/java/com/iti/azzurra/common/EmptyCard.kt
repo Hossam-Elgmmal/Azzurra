@@ -1,4 +1,4 @@
-package com.iti.azzurra.features.favorites.components
+package com.iti.azzurra.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,6 @@ import com.iti.azzurra.R
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeEffect
 
-
 @Composable
 fun EmptyCard(hazeState: HazeState) {
     Row(
@@ -32,7 +31,7 @@ fun EmptyCard(hazeState: HazeState) {
             .hazeEffect(state = hazeState)
             .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
             .padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.Companion.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.empty_lottie))

@@ -226,11 +226,24 @@
     <string name="snow">Snow</string>
     <string name="feels">Feels %1$s</string>
     <string name="day_forecast">%1$d-day forecast</string>
-    <string name="unit_kilometer">km</string>
     <string name="unit_micrograms_per_cubic_meter">%1$s µg/m³</string>
     <string name="aqi_level_good">Good</string>
     <string name="aqi_level_fair">Fair</string>
     <string name="aqi_level_moderate">Moderate</string>
     <string name="aqi_level_poor">Poor</string>
     <string name="aqi_level_very_poor">Very Poor</string>
+    <string name="unit_kilometer">%1$s km</string>
+    <string name="visibility">Visibility</string>
+    <string name="feels_like">Feels like %1$s</string>
+    <string name="max">Max %1$s</string>
+    <string name="min">Min %1$s</string>
+    <string name="co">CO</string>
+    <string name="no">NO</string>
+    <string name="no2">NO₂</string>
+    <string name="so">SO₂</string>
+    <string name="o">O₃</string>
+    <string name="pm2_5">PM2.5</string>
+    <string name="pm10">PM10</string>
+    <string name="nh">NH₃</string>
+    <string name="air_quality">Air quality</string>
 </resources>

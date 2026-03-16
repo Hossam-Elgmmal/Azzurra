@@ -7,13 +7,12 @@ import androidx.room.Query
 import com.iti.azzurra.data.weather.local.models.current_location.AirPollutionEntity
 import com.iti.azzurra.data.weather.local.models.current_location.CurrentWeatherEntity
 import com.iti.azzurra.data.weather.local.models.current_location.HourlyForecastEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CurrentWeatherDao {
 
     @Query("SELECT * FROM current_weather WHERE locationId = :locationId")
-    fun getCurrentWeatherByLocation(locationId: String): Flow<CurrentWeatherEntity?>
+    suspend fun getCurrentWeatherByLocation(locationId: String): CurrentWeatherEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCurrentWeather(currentWeather: CurrentWeatherEntity)
@@ -31,7 +30,7 @@ interface CurrentWeatherDao {
     suspend fun insertHourlyForecast(entities: List<HourlyForecastEntity>)
 
     @Query("SELECT * FROM hourly_forecast WHERE locationId = :locationId")
-    fun getHourlyWeatherByLocation(locationId: String): Flow<List<HourlyForecastEntity>?>
+    suspend fun getHourlyWeatherByLocation(locationId: String): List<HourlyForecastEntity>
 
     @Query("DELETE FROM hourly_forecast WHERE locationId = :locationId")
     suspend fun deleteHourlyWeatherByLocation(locationId: String)
@@ -46,7 +45,7 @@ interface CurrentWeatherDao {
     suspend fun insertAirPollution(entities: List<AirPollutionEntity>)
 
     @Query("SELECT * FROM air_pollution WHERE locationId = :locationId")
-    fun getAirPollutionByLocation(locationId: String): Flow<List<AirPollutionEntity>?>
+    suspend fun getAirPollutionByLocation(locationId: String): List<AirPollutionEntity>
 
     @Query("DELETE FROM air_pollution WHERE locationId = :locationId")
     suspend fun deleteAirPollutionByLocation(locationId: String)

@@ -7,7 +7,11 @@ import com.iti.azzurra.data.weather.local.models.current_location.HourlyForecast
 
 data class HomeState(
     val settings: UserSettings = UserSettings(),
-    val currentWeather: CurrentWeatherUi = CurrentWeatherUi(),
+    val currentWeather: CurrentWeatherUi? = null,
     val hourlyForecast: List<HourlyForecastUi> = emptyList(),
     val airPollution: List<AirPollutionUi> = emptyList(),
+    val checkForPermission: Boolean = true,
+    val showPermissionDialog: Boolean = false,
+    val cityName: String = "",
+    val currentLocationId: String = "",
 )

@@ -46,6 +46,33 @@ class WeatherRepoImp @Inject constructor(
     @param:Dispatcher(AzzurraDispatchers.DefaultDispatcher) private val defaultDispatcher: CoroutineDispatcher,
 ) : WeatherRepo {
 
+    override suspend fun currentWeatherOnce(settings: UserSettings): CurrentWeatherUi? {
+        return localSource.getCurrentWeatherFlow(
+            makeLocationId(
+                settings.savedLatitude,
+                settings.savedLongitude
+            )
+        )?.toCurrentWeatherUi(context, settings)
+    }
+
+    override suspend fun hourlyWeatherOnce(settings: UserSettings): List<HourlyForecastUi> {
+        return localSource.getHourlyWeatherFlow(
+            makeLocationId(
+                settings.savedLatitude,
+                settings.savedLongitude
+            )
+        ).toHourlyForecastUiList(context, settings)
+    }
+
+    override suspend fun airPollutionOnce(settings: UserSettings): List<AirPollutionUi> {
+        return localSource.getAirPollutionFlow(
+            makeLocationId(
+                settings.savedLatitude,
+                settings.savedLongitude
+            )
+        ).toAirPollutionUiList(context)
+    }
+
     override suspend fun getCurrentWeather(
         latitude: Double,
         longitude: Double,
@@ -55,10 +82,13 @@ class WeatherRepoImp @Inject constructor(
             latitude = latitude,
             longitude = longitude,
         ).map { responseDto ->
-            withContext(defaultDispatcher) {
+
+            val entity = withContext(defaultDispatcher) {
                 responseDto.toCurrentWeatherEntity(makeLocationId(latitude, longitude))
-                    .toCurrentWeatherUi(context, settings)
             }
+            localSource.insertCurrentWeather(entity)
+
+            entity.toCurrentWeatherUi(context, settings)
         }.onFailure {
             SnackbarController.sendEvent(
                 SnackbarEvent(
@@ -77,10 +107,11 @@ class WeatherRepoImp @Inject constructor(
             latitude = latitude,
             longitude = longitude,
         ).map { responseDto ->
-            withContext(defaultDispatcher) {
+            val entities = withContext(defaultDispatcher) {
                 responseDto.toHourlyForecastEntities(makeLocationId(latitude, longitude))
-                    .toHourlyForecastUiList(context, settings)
             }
+            localSource.insertHourlyForecast(entities)
+            entities.toHourlyForecastUiList(context, settings)
         }.onFailure {
             SnackbarController.sendEvent(
                 SnackbarEvent(
@@ -99,10 +130,11 @@ class WeatherRepoImp @Inject constructor(
             latitude = latitude,
             longitude = longitude,
         ).map {
-            withContext(defaultDispatcher) {
+            val entities = withContext(defaultDispatcher) {
                 it.toAirPollutionEntities(makeLocationId(latitude, longitude))
-                    .toAirPollutionUiList(context)
             }
+            localSource.insertAirPollution(entities)
+            entities.toAirPollutionUiList(context)
         }.onFailure {
             SnackbarController.sendEvent(
                 SnackbarEvent(

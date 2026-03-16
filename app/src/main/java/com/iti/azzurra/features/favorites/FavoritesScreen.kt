@@ -32,7 +32,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.iti.azzurra.R
 import com.iti.azzurra.data.settings.models.LanguageSetting
-import com.iti.azzurra.features.favorites.components.EmptyCard
+import com.iti.azzurra.common.EmptyCard
 import com.iti.azzurra.features.favorites.components.LocationCard
 import com.iti.azzurra.features.favorites.components.WeatherListDialog
 import com.iti.azzurra.main_navigation.LocalBottomBarHeight

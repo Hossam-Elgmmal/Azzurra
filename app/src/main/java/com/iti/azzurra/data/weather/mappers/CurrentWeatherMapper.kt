@@ -54,6 +54,7 @@ fun CurrentWeatherEntity.toCurrentWeatherUi(
         cityCountryText = "$cityName, $countryCode",
         dateText = formatDate(timestamp, timeZone),
         timeText = formatTime(timestamp, timeZone),
+        conditionId = conditionId,
         iconCode = conditionIconCode,
         conditionTitle = context.getString(
             WeatherConditionResources.getResources(conditionId).titleResId
@@ -67,7 +68,7 @@ fun CurrentWeatherEntity.toCurrentWeatherUi(
         maxTempText = formatTemperature(maximumTemperature, context, settings.temperatureUnit),
         humidityText = context.getString(R.string.unit_percentage, humidityPercent),
         pressureText = context.getString(R.string.unit_pressure, atmosphericPressure),
-        visibilityText = context.getString(R.string.unit_kilometer, visibilityMeters / 1000.0),
+        visibilityText = context.getString(R.string.unit_kilometer, (visibilityMeters / 1000.0).toString()),
         cloudCoverText = context.getString(R.string.unit_percentage, cloudCoveragePercent),
         windSpeedText = formatWindSpeed(windSpeedMetersPerSecond, context, settings.windSpeedUnit),
         windDirectionText = formatWindDirection(windDirectionDegrees, context),

@@ -7,9 +7,9 @@ import com.iti.azzurra.data.settings.models.UserSettings
 import com.iti.azzurra.utils.Constants.ERROR_TAG
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import java.io.IOException
 import javax.inject.Inject
 
@@ -19,10 +19,10 @@ class UserSettingsRepoImp @Inject constructor(
 ) : UserSettingsRepo {
 
     private val _settingsFlow: Flow<UserSettings> = dataStore.data
-    override val settingsFlow: SharedFlow<UserSettings> = _settingsFlow.shareIn(
+    override val settingsFlow: StateFlow<UserSettings> = _settingsFlow.stateIn(
         scope = scope,
         started = SharingStarted.WhileSubscribed(5_000),
-        replay = 1
+        initialValue = UserSettings()
     )
 
     override suspend fun updateUserSettings(updateBlock: (UserSettings) -> UserSettings) {

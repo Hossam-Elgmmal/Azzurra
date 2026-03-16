@@ -13,6 +13,12 @@ import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepo {
 
+    suspend fun currentWeatherOnce(settings: UserSettings): CurrentWeatherUi?
+
+    suspend fun hourlyWeatherOnce(settings: UserSettings): List<HourlyForecastUi>
+
+    suspend fun airPollutionOnce(settings: UserSettings): List<AirPollutionUi>
+
     suspend fun getCurrentWeather(
         latitude: Double,
         longitude: Double,

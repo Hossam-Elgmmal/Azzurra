@@ -24,4 +24,5 @@ data class CurrentWeatherUi(
     val snowVolumeText: String = "",
     val sunriseText: String = "",
     val sunsetText: String = "",
+    val conditionId: Int = 0,
 )

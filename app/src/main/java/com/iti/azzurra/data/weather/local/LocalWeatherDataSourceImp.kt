@@ -18,6 +18,18 @@ class LocalWeatherDataSourceImp @Inject constructor(
     private val geoLocationDao: GeoLocationDao
 ) : LocalWeatherDataSource {
 
+    override suspend fun getCurrentWeatherFlow(locationId: String): CurrentWeatherEntity? {
+        return currentWeatherDao.getCurrentWeatherByLocation(locationId)
+    }
+
+    override suspend fun getHourlyWeatherFlow(locationId: String): List<HourlyForecastEntity> {
+        return currentWeatherDao.getHourlyWeatherByLocation(locationId)
+    }
+
+    override suspend fun getAirPollutionFlow(locationId: String): List<AirPollutionEntity> {
+        return currentWeatherDao.getAirPollutionByLocation(locationId)
+    }
+
     override suspend fun insertCurrentWeather(
         entity: CurrentWeatherEntity
     ) = currentWeatherDao.insertCurrentWeather(entity)
