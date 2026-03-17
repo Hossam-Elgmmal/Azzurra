@@ -13,6 +13,7 @@ import com.iti.azzurra.core.scope.Dispatcher
 import com.iti.azzurra.data.settings.models.UserSettings
 import com.iti.azzurra.data.weather.local.LocalWeatherDataSource
 import com.iti.azzurra.data.weather.local.models.current_location.AirPollutionUi
+import com.iti.azzurra.data.weather.local.models.current_location.CurrentWeatherEntity
 import com.iti.azzurra.data.weather.local.models.current_location.CurrentWeatherUi
 import com.iti.azzurra.data.weather.local.models.current_location.HourlyForecastUi
 import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastUi
@@ -73,7 +74,7 @@ class WeatherRepoImp @Inject constructor(
         ).toAirPollutionUiList(context)
     }
 
-    override suspend fun getCurrentWeather(
+    override suspend fun getCurrentWeatherUi(
         latitude: Double,
         longitude: Double,
         settings: UserSettings,
@@ -89,6 +90,30 @@ class WeatherRepoImp @Inject constructor(
             localSource.insertCurrentWeather(entity)
 
             entity.toCurrentWeatherUi(context, settings)
+        }.onFailure {
+            SnackbarController.sendEvent(
+                SnackbarEvent(
+                    messageId = it.toUserMessageId()
+                )
+            )
+        }
+    }
+
+    override suspend fun getCurrentWeatherEntity(
+        latitude: Double,
+        longitude: Double,
+        settings: UserSettings,
+    ): WeatherResult<CurrentWeatherEntity, WeatherDataError> {
+        return remoteSource.getCurrentWeather(
+            latitude = latitude,
+            longitude = longitude,
+        ).map { responseDto ->
+
+            val entity = withContext(defaultDispatcher) {
+                responseDto.toCurrentWeatherEntity(makeLocationId(latitude, longitude))
+            }
+            localSource.insertCurrentWeather(entity)
+            entity
         }.onFailure {
             SnackbarController.sendEvent(
                 SnackbarEvent(

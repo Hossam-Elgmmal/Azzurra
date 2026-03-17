@@ -74,7 +74,8 @@ class HomeViewModel @Inject constructor(
             }
             .distinctUntilChangedBy { settings -> settings.savedLatitude to settings.savedLongitude }
             .onEach { _ ->
-                fetchNewData()
+                //todo!!
+                //fetchNewData()
             }
             .launchIn(viewModelScope)
     }
@@ -184,7 +185,7 @@ class HomeViewModel @Inject constructor(
 
     private fun fetchNewCurrentWeather(settings: UserSettings) {
         viewModelScope.launch {
-            weatherRepo.getCurrentWeather(
+            weatherRepo.getCurrentWeatherUi(
                 latitude = settings.savedLatitude,
                 longitude = settings.savedLongitude,
                 settings = settings

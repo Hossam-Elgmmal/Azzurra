@@ -4,6 +4,7 @@ import com.iti.azzurra.core.network.WeatherDataError
 import com.iti.azzurra.core.network.WeatherResult
 import com.iti.azzurra.data.settings.models.UserSettings
 import com.iti.azzurra.data.weather.local.models.current_location.AirPollutionUi
+import com.iti.azzurra.data.weather.local.models.current_location.CurrentWeatherEntity
 import com.iti.azzurra.data.weather.local.models.current_location.CurrentWeatherUi
 import com.iti.azzurra.data.weather.local.models.current_location.HourlyForecastUi
 import com.iti.azzurra.data.weather.local.models.favorites.DailyForecastUi
@@ -19,7 +20,7 @@ interface WeatherRepo {
 
     suspend fun airPollutionOnce(settings: UserSettings): List<AirPollutionUi>
 
-    suspend fun getCurrentWeather(
+    suspend fun getCurrentWeatherUi(
         latitude: Double,
         longitude: Double,
         settings: UserSettings,
@@ -71,4 +72,10 @@ interface WeatherRepo {
     suspend fun deleteFavoriteLocation(
         location: FavoriteLocationEntity
     )
+
+    suspend fun getCurrentWeatherEntity(
+        latitude: Double,
+        longitude: Double,
+        settings: UserSettings
+    ): WeatherResult<CurrentWeatherEntity, WeatherDataError>
 }

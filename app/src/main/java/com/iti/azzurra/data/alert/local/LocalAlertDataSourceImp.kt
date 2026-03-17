@@ -1,7 +1,7 @@
 package com.iti.azzurra.data.alert.local
 
 import com.iti.azzurra.data.alert.local.daos.AlertDao
-import com.iti.azzurra.data.alert.local.models.WeatherAlertEntity
+import com.iti.azzurra.data.alert.local.models.AlertEntity
 import javax.inject.Inject
 
 class LocalAlertDataSourceImp @Inject constructor(
@@ -15,10 +15,10 @@ class LocalAlertDataSourceImp @Inject constructor(
     ) = alertDao.getAlertById(alertId)
 
     override suspend fun insertAlert(
-        entity: WeatherAlertEntity
+        entity: AlertEntity
     ) = alertDao.insertAlert(entity)
 
     override suspend fun deleteAlertById(
-        alertId: String
+        alertId: Int
     ) = alertDao.deleteAlert(alertId)
 }

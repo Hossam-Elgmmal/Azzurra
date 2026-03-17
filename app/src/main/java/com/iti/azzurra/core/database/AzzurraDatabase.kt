@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.iti.azzurra.data.alert.local.daos.AlertDao
-import com.iti.azzurra.data.alert.local.models.WeatherAlertEntity
+import com.iti.azzurra.data.alert.local.models.AlertEntity
 import com.iti.azzurra.data.weather.local.daos.CurrentWeatherDao
 import com.iti.azzurra.data.weather.local.daos.FavoriteDao
 import com.iti.azzurra.data.weather.local.daos.GeoLocationDao
@@ -23,7 +23,7 @@ import com.iti.azzurra.data.weather.local.models.geo_location.GeoLocationEntity
         DailyForecastEntity::class,
         AirPollutionEntity::class,
         FavoriteLocationEntity::class,
-        WeatherAlertEntity::class,
+        AlertEntity::class,
         GeoLocationEntity::class
     ],
     version = 1,
