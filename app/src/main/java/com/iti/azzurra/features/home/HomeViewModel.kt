@@ -74,8 +74,7 @@ class HomeViewModel @Inject constructor(
             }
             .distinctUntilChangedBy { settings -> settings.savedLatitude to settings.savedLongitude }
             .onEach { _ ->
-                //todo!!
-                //fetchNewData()
+                fetchNewData()
             }
             .launchIn(viewModelScope)
     }
