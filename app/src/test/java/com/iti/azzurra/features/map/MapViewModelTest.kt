@@ -135,7 +135,7 @@ class MapViewModelTest {
         viewModel.onAction(MapAction.OnSetAsCurrentLocation)
 
         coVerify { settingsRepo.updateUserSettings(any()) }
-        coVerify { SnackbarController.sendEvent(SnackbarEvent(messageId = R.string.updated_current_location)) }
+        coVerify { SnackbarController.sendEvent(SnackbarEvent(messageId = R.string.updated_current_weather)) }
     }
 
     @Test

@@ -13,17 +13,13 @@ import com.iti.azzurra.data.usecases.CurrentLocationUseCase
 import com.iti.azzurra.data.weather.WeatherRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChangedBy
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,47 +35,38 @@ class HomeViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(HomeState())
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val state: StateFlow<HomeState> = settingsRepo.settingsFlow
-        .flatMapLatest { userSettings ->
-            weatherRepo.getCurrentLocalCity(
-                latitude = userSettings.savedLatitude,
-                longitude = userSettings.savedLongitude,
-            ).flatMapLatest { geoLocation ->
-                _state.map { oldState ->
-                    oldState.copy(
-                        settings = userSettings,
-                        cityName = geoLocation?.localizedNames?.get(userSettings.language.getCode())
-                            ?: geoLocation?.nameEn ?: userSettings.city,
+    val state: StateFlow<HomeState> = _state.asStateFlow()
+
+    init {
+        observeSettingsChanges()
+    }
+
+    private fun observeSettingsChanges() {
+        settingsRepo.settingsFlow
+            .onEach { settings ->
+                getLocalData(settings)
+                val geoLocation = weatherRepo.getGeoLocationOnce(
+                    latitude = settings.savedLatitude,
+                    longitude = settings.savedLongitude,
+                )
+                _state.update {
+                    it.copy(
+                        settings = settings,
+                        cityName = geoLocation?.localizedNames?.get(settings.language.getCode())
+                            ?: geoLocation?.nameEn ?: settings.city,
                         currentLocationId = geoLocation?.locationId ?: "",
                     )
                 }
             }
-        }
-        .flowOn(dispatcher)
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.Eagerly,
-            initialValue = HomeState()
-        )
-
-    init {
-        observeLocationChanges()
-    }
-
-    private fun observeLocationChanges() {
-        settingsRepo.settingsFlow
-            .onEach { userSettings ->
-                getNewData(userSettings)
-            }
             .distinctUntilChangedBy { settings -> settings.savedLatitude to settings.savedLongitude }
-            .onEach { _ ->
-                fetchNewData()
+            .onEach { settings ->
+                fetchNewData(settings)
             }
+            .flowOn(dispatcher)
             .launchIn(viewModelScope)
     }
 
-    private suspend fun getNewData(userSettings: UserSettings) {
+    private suspend fun getLocalData(userSettings: UserSettings) {
         val currentWeather = weatherRepo.currentWeatherOnce(userSettings)
         val hourlyForecast = weatherRepo.hourlyWeatherOnce(userSettings)
         val airPollution = weatherRepo.airPollutionOnce(userSettings)
@@ -94,13 +81,13 @@ class HomeViewModel @Inject constructor(
 
     fun onAction(action: HomeAction) {
         when (action) {
-            HomeAction.FetchNewData -> {
-                fetchNewData()
+            is HomeAction.FetchNewData -> {
+                fetchNewData(action.settings)
             }
 
             HomeAction.GetCurrentLocation -> {
-                getCurrentLocationWithGps()
                 viewModelScope.launch {
+                    locationUseCase()
                     settingsRepo.updateUserSettings {
                         it.copy(locationSource = LocationSource.GPS)
                     }
@@ -141,14 +128,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getCurrentLocationWithGps() {
-        viewModelScope.launch {
-            locationUseCase()
-        }
-    }
-
-    private fun fetchNewData() {
-        val settings = state.value.settings
+    private fun fetchNewData(settings: UserSettings) {
         fetchNewCurrentWeather(settings)
         fetchNewHourlyWeather(settings)
         fetchAirPollution(settings)

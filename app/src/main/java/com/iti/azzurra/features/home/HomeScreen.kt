@@ -7,6 +7,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -29,7 +31,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -44,6 +48,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.iti.azzurra.R
 import com.iti.azzurra.common.EmptyCard
 import com.iti.azzurra.common.PermissionsDialog
+import com.iti.azzurra.data.weather.local.models.current_location.AirPollutionUi
 import com.iti.azzurra.features.home.components.AirPollutionCard
 import com.iti.azzurra.features.home.components.CurrentWeatherCard
 import com.iti.azzurra.features.home.components.HourlyForecastCard
@@ -156,23 +161,16 @@ fun HomeScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     itemsIndexed(state.hourlyForecast, key = { i, _ -> i }) { index, hourly ->
-                        Column(
-                            verticalArrangement = Arrangement.spacedBy(16.dp)
+                        Box(
+                            contentAlignment = Alignment.Center
                         ) {
                             HourlyForecastCard(
                                 hourly = hourly,
                                 hazeState = hazeState,
+                                pollution = state.airPollution.getOrElse(index) { AirPollutionUi() },
                                 modifier = Modifier
-                                    .width(320.dp)
+                                    .width(200.dp)
                             )
-                            state.airPollution.getOrNull(index)?.let { pollution ->
-                                AirPollutionCard(
-                                    pollution = pollution,
-                                    hazeState = hazeState,
-                                    modifier = Modifier
-                                        .width(320.dp)
-                                )
-                            }
                         }
                     }
                 }

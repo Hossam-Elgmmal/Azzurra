@@ -33,7 +33,7 @@ class CurrentLocationUseCase @Inject constructor(
             }
             SnackbarController.sendEvent(
                 SnackbarEvent(
-                    messageId = R.string.updated_current_location
+                    messageId = R.string.updated_current_weather
                 )
             )
         }

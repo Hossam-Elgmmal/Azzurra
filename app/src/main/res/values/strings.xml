@@ -42,7 +42,7 @@
     <string name="allow">Allow</string>
     <string name="notification_permission">Notification Permission</string>
     <string name="please_allow_azzurra_to_send_you_notifications">Please, allow Azzurra to send you notifications.</string>
-    <string name="updated_current_location">Updated current location!</string>
+    <string name="updated_current_weather">Updated current weather!</string>
     <string name="canceled_obtaining_location">Canceled obtaining location.</string>
     <string name="location_permission">Location Permission</string>
     <string name="please_allow_azzurra_to_access_your_location">Please, allow Azzurra to access your location.</string>

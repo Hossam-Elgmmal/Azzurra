@@ -147,7 +147,7 @@ class MapViewModel @Inject constructor(
                         savedLongitude = geoLocation.longitude,
                     )
                 }
-                sendSnackBar(R.string.updated_current_location)
+                sendSnackBar(R.string.updated_current_weather)
                 //TODO Check alarms
             } ?: run {
                 sendSnackBar(R.string.unable_to_set_as_current_location)
