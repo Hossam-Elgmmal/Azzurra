@@ -13,6 +13,9 @@ interface AlertDao {
     @Query("SELECT * FROM alerts ORDER BY startTime ASC")
     fun getAllAlerts(): Flow<List<AlertEntity>>
 
+    @Query("SELECT * FROM alerts ORDER BY startTime ASC")
+    suspend fun getAllAlertsOnce(): List<AlertEntity>
+
     @Query("SELECT * FROM alerts WHERE alertId = :alertId")
     fun getAlertById(alertId: String): Flow<AlertEntity>
 

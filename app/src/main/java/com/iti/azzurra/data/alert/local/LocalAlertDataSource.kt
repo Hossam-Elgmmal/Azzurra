@@ -7,6 +7,8 @@ interface LocalAlertDataSource {
 
     fun getAllAlerts(): Flow<List<AlertEntity>>
 
+    suspend fun getAllAlertsOnce(): List<AlertEntity>
+
     fun getAlertById(alertId: String): Flow<AlertEntity>
 
     suspend fun insertAlert(entity: AlertEntity)

@@ -10,6 +10,8 @@ class LocalAlertDataSourceImp @Inject constructor(
 
     override fun getAllAlerts() = alertDao.getAllAlerts()
 
+    override suspend fun getAllAlertsOnce() = alertDao.getAllAlertsOnce()
+
     override fun getAlertById(
         alertId: String
     ) = alertDao.getAlertById(alertId)

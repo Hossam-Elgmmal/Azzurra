@@ -13,6 +13,10 @@ class AlertRepoImp @Inject constructor(
         return localSource.getAllAlerts()
     }
 
+    override suspend fun getAllAlertsOnce(): List<AlertEntity> {
+        return localSource.getAllAlertsOnce()
+    }
+
     override fun getAlertById(alertId: String): Flow<AlertEntity> {
         return localSource.getAlertById(alertId)
     }

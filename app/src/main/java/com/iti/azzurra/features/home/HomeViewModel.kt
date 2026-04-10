@@ -11,6 +11,7 @@ import com.iti.azzurra.data.settings.models.UserSettings
 import com.iti.azzurra.data.settings.models.WeatherCondition
 import com.iti.azzurra.data.usecases.CurrentLocationUseCase
 import com.iti.azzurra.data.weather.WeatherRepo
+import com.iti.azzurra.data.work.AlertManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,6 +32,7 @@ class HomeViewModel @Inject constructor(
     private val settingsRepo: UserSettingsRepo,
     private val locationUseCase: CurrentLocationUseCase,
     @param:Dispatcher(AzzurraDispatchers.DefaultDispatcher) private val dispatcher: CoroutineDispatcher,
+    private val alertManager: AlertManager
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeState())
@@ -61,6 +63,7 @@ class HomeViewModel @Inject constructor(
             .distinctUntilChangedBy { settings -> settings.savedLatitude to settings.savedLongitude }
             .onEach { settings ->
                 fetchNewData(settings)
+                alertManager.runWorkNow()
             }
             .flowOn(dispatcher)
             .launchIn(viewModelScope)

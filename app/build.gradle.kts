@@ -135,6 +135,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     //hilt work
     implementation(libs.androidx.hilt.work)
+    ksp(libs.androidx.hilt.compiler)
 
     // appcompat
     implementation(libs.androidx.appcompat)
