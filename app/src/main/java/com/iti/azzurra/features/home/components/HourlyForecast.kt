@@ -70,7 +70,7 @@ fun HourlyForecastCard(
             ) {
                 WeatherConditionIcon(
                     iconCode = hourly.iconCode,
-                    size = 40.dp,
+                    modifier = Modifier.size(56.dp)
                 )
                 Text(
                     text = hourly.timeText,

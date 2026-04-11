@@ -49,7 +49,7 @@ fun CurrentWeatherCard(
         ) {
             WeatherConditionIcon(
                 iconCode = weather.iconCode,
-                size = 56.dp,
+                modifier = Modifier.size(100.dp)
             )
             Column(
 
