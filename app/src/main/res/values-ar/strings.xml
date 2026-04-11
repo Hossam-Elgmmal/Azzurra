@@ -271,4 +271,12 @@
     <string name="end_time_must_be_after_start_time">يجب أن يكون وقت النهاية بعد وقت البداية</string>
     <string name="ok">موافق</string>
     <string name="cancels">إلغاء</string>
+    <string name="notification_channel_name">قناة تنبيهات الطقس</string>
+    <string name="notification_channel_description">تتيح لتطبيق أزورا إرسال إشعارات تنبيه لك</string>
+    <string name="snow_alert_title">طقس ثلجي</string>
+    <string name="snow_alert_description">انتبه من الثلوج.</string>
+    <string name="rain_alert_title">طقس ممطر</string>
+    <string name="rain_alert_description">انتبه من المطر.</string>
+    <string name="temperature_alert_title">تنبيه درجة الحرارة</string>
+    <string name="temperature_alert_description">تم اكتشاف درجة حرارة خارج النطاق المحدد.</string>
 </resources>

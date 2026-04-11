@@ -114,12 +114,6 @@ class WeatherRepoImp @Inject constructor(
             }
             localSource.insertCurrentWeather(entity)
             entity
-        }.onFailure {
-            SnackbarController.sendEvent(
-                SnackbarEvent(
-                    messageId = it.toUserMessageId()
-                )
-            )
         }
     }
 

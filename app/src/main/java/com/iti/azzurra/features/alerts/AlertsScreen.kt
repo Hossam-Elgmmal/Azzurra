@@ -131,6 +131,11 @@ fun AlertsScreen(
             }
             item {
                 Spacer(
+                    modifier = Modifier.height(56.dp)
+                )
+            }
+            item {
+                Spacer(
                     modifier = Modifier.height(bottomBarHeight)
                 )
             }

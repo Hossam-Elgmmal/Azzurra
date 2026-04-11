@@ -270,4 +270,12 @@
     <string name="end_time_must_be_after_start_time">End time must be after start time</string>
     <string name="ok">OK</string>
     <string name="cancels">Cancel</string>
+    <string name="notification_channel_name">Weather alert channel</string>
+    <string name="notification_channel_description">This allows Azzurra to send you alert notifications</string>
+    <string name="snow_alert_title">Snow Weather</string>
+    <string name="snow_alert_description">Be careful of the snow.</string>
+    <string name="rain_alert_title">Rain Weather</string>
+    <string name="rain_alert_description">Be careful of the rain.</string>
+    <string name="temperature_alert_title">Temperature Alert</string>
+    <string name="temperature_alert_description">Temperature outside of bounds detected.</string>
 </resources>

@@ -68,13 +68,13 @@ fun LocationCard(
                 modifier = Modifier
             )
             Text(
-                text = "${favoriteLocationEntity.longitude}",
+                text = "%.4f".format(favoriteLocationEntity.longitude),
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
             )
             Text(
-                text = "${favoriteLocationEntity.latitude}",
+                text = "%.4f".format(favoriteLocationEntity.latitude),
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier

@@ -2,6 +2,7 @@ package com.iti.azzurra.features.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.iti.azzurra.BuildConfig
 import com.iti.azzurra.core.network.onSuccess
 import com.iti.azzurra.core.scope.AzzurraDispatchers
 import com.iti.azzurra.core.scope.Dispatcher
@@ -35,6 +36,8 @@ class HomeViewModel @Inject constructor(
     private val alertManager: AlertManager
 ) : ViewModel() {
 
+    var isFirstWeatherFetch = true
+
     private val _state = MutableStateFlow(HomeState())
 
     val state: StateFlow<HomeState> = _state.asStateFlow()
@@ -63,7 +66,10 @@ class HomeViewModel @Inject constructor(
             .distinctUntilChangedBy { settings -> settings.savedLatitude to settings.savedLongitude }
             .onEach { settings ->
                 fetchNewData(settings)
-                alertManager.runWorkNow()
+                if (!isFirstWeatherFetch) {
+                    alertManager.runWorkNow()
+                }
+                isFirstWeatherFetch = false
             }
             .flowOn(dispatcher)
             .launchIn(viewModelScope)
@@ -181,6 +187,13 @@ class HomeViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        if (!BuildConfig.DEBUG) {
+            alertManager.scheduleHourlyWork()
         }
     }
 }

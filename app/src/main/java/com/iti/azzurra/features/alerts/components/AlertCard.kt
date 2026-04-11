@@ -109,6 +109,7 @@ fun WeatherAlertCard(
                 Text(
                     text = stringResource(R.string.duration),
                 )
+                Spacer(Modifier.width(4.dp))
                 Text(
                     text = formatDuration(Duration.ofMillis(alert.endTime - alert.startTime)),
                 )

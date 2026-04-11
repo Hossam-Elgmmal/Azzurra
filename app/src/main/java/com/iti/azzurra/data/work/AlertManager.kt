@@ -30,6 +30,7 @@ class AlertManager @Inject constructor(
             request = workRequest,
         )
     }
+
     fun scheduleHourlyWork() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
