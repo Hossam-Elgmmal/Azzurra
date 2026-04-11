@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -88,7 +89,7 @@ fun HomeScreen(
 
     val listState = rememberLazyListState()
     val isScrolled by remember {
-        derivedStateOf { listState.firstVisibleItemIndex > 0 }
+        derivedStateOf { listState.firstVisibleItemScrollOffset > 200.dp.value }
     }
     Scaffold(
         containerColor = Color.Transparent,
@@ -96,9 +97,9 @@ fun HomeScreen(
             TopAppBar(
                 navigationIcon = {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_logo),
+                        painter = painterResource(id = R.drawable.img_azzurra_logo),
                         contentDescription = null,
-                        modifier = Modifier
+                        modifier = Modifier.size(72.dp)
                     )
                 },
                 title = {
